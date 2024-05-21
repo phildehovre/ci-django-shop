@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %} {% block content %} 
+{% load static %}
+<div class="account_ctn">
+{% if page == 'account' %}
+  <article class="card menu_card">
+    <i class="fa-solid fa-xl fa-user"></i>
+    <h2 class="card_heading"><a href="{% url 'settings' %}">Account Settings</a></h2>
+    <small>Change your address, profile details and other information.</small>
+  </article>
+  <article class="card menu_card">
+    <i class="fa-solid fa-xl fa-truck-fast"></i>
+    <h2 class="card_heading"><a href="{% url 'orders' %}">My orders</a></h2>
+    <small>View and track your orders, view your past orders.</small>
+  </article>
+  <article class="card menu_card">
+    <i class="fa-solid fa-xl fa-credit-card"></i>
+    <h2 class="card_heading"><a href="{% url 'payment_methods' %}">Payment methods</a></h2>
+    <small>View, add, update or remove payment methods.</small>
+  </article>
+  <article class="card menu_card">
+    <i class="fa-solid fa-xl fa-shield-halved"></i>
+    <h2 class="card_heading"><a href="{% url 'security' %}">Security</a></h2>
+    <small>Change your password.</small>
+  </article>
+  {% endif %} 
+</div>
+  {% endblock content %}

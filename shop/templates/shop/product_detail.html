@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %} {% block products %} {% if product %}
+<div class="product_detail_ctn">
+  <h2>{{ product.name }}</h2>
+  <img src="/{{ product.image }}" alt="Image of {{ product.name }}"/>
+  <p>{{ product.description }}</p>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
+    <input type="submit" name="add_to_basket" value="Add to basket" />
+  </form>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}
+            <a href="{% url 'shop' %}">Continue shopping</a>
+            <a href="{% url 'basket' %}">View basket</a>
+          </li>
+      {% endfor %}
+  </ul>
+{% endif %}
+</div>
+{% endif %} {% endblock products %}

@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %} {% load humanize %} {% block products %}
+<h1>Basket</h1>
+
+{% comment %} <div class="basket_ctn"> {% endcomment %}
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% if basket|length == 0 %}
+  <p>Your basket is empty</p>
+  <a href="{% url 'shop' %}">Start shopping</a>
+  {% endif %}
+  <div class="list_ctn">
+    {% for order_item in basket %}
+    <article class="card product">
+      <a href="{% url 'product_detail' order_item.product.id %}">
+        <img
+          src="{{ order_item.product.image.url }}"
+          alt="{{ order_item.product.name }}"
+        />
+        <h2>{{ order_item.product.name }}</h2>
+      </a>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="order_item_id" value="{{ order_item.id }}" />
+        <input type="number" name="quantity" value="{{ order_item.quantity }}" />
+      </form>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="delete" />
+        <input type="hidden" name="order_item_id" value="{{ order_item.id }}" />
+        <button class="btn_secondary" type="submit">Remove item(s)</button>
+      </form>
+    </article>
+      {% endfor %}
+  </div>
+  </div> 
+    <p>Total: £{{ total|floatformat:2 }}</p>
+    {% if basket|length > 0 %}
+    <button class="btn_main">
+      <a  href="{% url 'checkout' %}" class="">checkout</a>
+    </button>
+    {% else %}
+    <button class="btn_main disabled" disabled>
+      Checkout
+    </button>
+    {% endif %}
+  {% endblock products %}
+</div>

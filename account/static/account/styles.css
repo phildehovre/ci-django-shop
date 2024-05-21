@@ -1,0 +1,40 @@
+
+.account_ctn {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    
+
+    article {
+        min-height: 100px;
+    }
+
+    i {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+
+.profile_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+    padding: var(--box-padding)
+}
+
+.profile_avatar_ctn {
+    border: 5px solid white;
+    box-shadow: var(--box-shadow);
+}
+
+.address {
+    justify-content: space-between;
+    text-align: left;
+}
