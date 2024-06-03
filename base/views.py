@@ -9,7 +9,8 @@ from .forms import UpdateProfileForm
 # Create your views here.
 
 def base_view(request):
-    return render(request, 'base/base.html')
+    print("Is this the base view")
+    return render(request, 'base/home.html')
 
 def about_view(request):
     return render(request, 'base/about.html')
