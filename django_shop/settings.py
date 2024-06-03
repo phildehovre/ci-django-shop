@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','.vercel.app', '*', 'django-shop.up.railway.app']
 
-CSRF_TRUSTED_HOST = ['https://django-shop.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app']
 
 
 # Application definition
