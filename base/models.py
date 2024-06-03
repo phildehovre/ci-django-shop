@@ -3,15 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Feature(models.Model):
-    image=models.ImageField(upload_to="feature_pictures")
-    active=models.BooleanField(default=False)
-    title=models.CharField(max_length=250)
-    subtitle=models.CharField(max_length=250)
-
-    def __str__(self):
-        return self.title
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='profile_pictures')

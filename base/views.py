@@ -3,15 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import Profile, Feature
+from .models import Profile
+from shop.models import Feature
 from .forms import UpdateProfileForm
+
 
 # Create your views here.
 
 def base_view(request):
     if request.user:
-        edit_perm = request.user.has_perm('base/change_feature')
-        add_perm = request.user.has_perm('base/add_feature')
+        edit_perm = request.user.has_perm('shop/change_feature')
+        add_perm = request.user.has_perm('shop/add_feature')
     
     features = Feature.objects.filter(active=True)
 

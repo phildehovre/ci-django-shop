@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Product, ProductTag
+from .models import Product, ProductTag, Feature
 
 class UpdateProductForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
@@ -14,3 +14,14 @@ class UpdateProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'image', 'description', 'price', 'tags', 'stock']
+
+class UpdateFeatureForm(forms.ModelForm):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    title = forms.CharField(max_length=250)
+    subtitle = forms.CharField(max_length=250)
+    active = forms.BooleanField()
+    tags = forms.ModelMultipleChoiceField(queryset=ProductTag.objects.all(), widget=forms.CheckboxSelectMultiple)
+
+    class Meta:
+        model = Feature
+        fields = ['title', 'subtitle', 'active', 'image']
