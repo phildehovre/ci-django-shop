@@ -1,7 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
-{% if add_perm %}
-{% endif %}
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       {% for feature in features %}
@@ -11,17 +10,33 @@
     <div class="carousel-inner">
     {% for feature in features %}
       <div class="feature_ctn carousel-item {% if forloop.first %}active{% endif %}" style="--imageurl: url('{{ feature.image.url }}');">
+        {% if add_perm %}
+            <button class="action_link admin" style="position: absolute; z-index:99;">
+                <a href="{% url 'edit_feature' feature.id %}">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+            </button>
+            {% if not feature.active %}
+            <span style="
+                backdrop-filter: blur(5px); 
+                background-color: rgba(255, 0, 0, 0.253);
+                padding: .5rem;
+                color: coral;
+                font-size: large;
+                display: block;
+                text-align: center;
+                font-weight: bold;
+            ">
+                <p>This feature is not published yet.</p>
+            </span>
+            {% endif %}
+        {% endif %}
         <div class="feature_header">
             <h1>{{ feature.title }}</h1>
             <h2>{{ feature.subtitle }}</h2>
             <button class="btn_main">
                 <a href="{% url 'shop' %}?tag={% for tag in feature.tags.all %}{{tag.id}},{% endfor %}">Start shopping</a>
             </button>
-            {% for tag in feature.tags.all %}
-            <p>
-                {{tag.name}}
-            </p>
-        {% endfor %}
         </div>
         <!-- <img src="{{ feature.image.url }}" class="d-block w-100" alt="{{ feature.title }}"> -->
       </div>

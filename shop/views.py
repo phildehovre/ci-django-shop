@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, OrderItem, ProductTag, Order
+from .models import Product, OrderItem, ProductTag, Order, Feature
 from base.models import Address
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .helpers import calculations
 from django.db.models import Q
-from .forms import UpdateProductForm
+from .forms import UpdateProductForm, UpdateFeatureForm
 
 
 def shop_view(request, selected_tags=None):
@@ -226,4 +226,26 @@ def edit_product(request, pk):
             'form': form
         }
         return render(request, 'shop/add_product.html', context)
+
+
+@login_required
+def edit_feature(request, pk):
+        feature = Feature.objects.get(id=pk)
+        if request.method == "POST":
+            try:
+                form = UpdateFeatureForm(request.POST, request.FILES, instance=feature)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, f'{feature.title} was updated succesfully.')
+                    return redirect('/')
+            except Exception as e:
+                messages.error(request, f"There was an error: {str(e)}")
+        else:
+            form = UpdateFeatureForm(instance=feature)
+
+        context = {
+            'feature': feature,
+            'form': form
+        }
+        return render(request, 'base/form.html', context)
 

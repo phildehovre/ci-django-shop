@@ -17,9 +17,9 @@ class UpdateProductForm(forms.ModelForm):
 
 class UpdateFeatureForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    title = forms.CharField(max_length=250)
-    subtitle = forms.CharField(max_length=250)
-    active = forms.BooleanField()
+    title = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    subtitle = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    active = forms.BooleanField(required=False)
     tags = forms.ModelMultipleChoiceField(queryset=ProductTag.objects.all(), widget=forms.CheckboxSelectMultiple)
 
     class Meta:
