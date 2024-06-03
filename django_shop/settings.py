@@ -29,7 +29,9 @@ SECRET_KEY = 'django-insecure-(f#$f9fnm*deg4+q510p5axz^d)24ws0po3exm6gft&1a%#)wz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.vercel.app', '*']
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app', '*', 'django-shop.up.railway.app']
+
+CSRF_TRUSTED_HOST = ['https://django-shop.up.railway.app']
 
 
 # Application definition
@@ -83,22 +85,6 @@ WSGI_APPLICATION = 'django_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'ubafvcUZhkmRKzyJMYzsghMkcNglLPBu',
-#         'HOST': 'viaduct.proxy.rlwy.net',
-#         'PORT': '35987',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': config('DATABASE_ENGINE'),
