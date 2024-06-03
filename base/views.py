@@ -3,14 +3,29 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Feature
 from .forms import UpdateProfileForm
 
 # Create your views here.
 
 def base_view(request):
-    print("Is this the base view")
-    return render(request, 'base/home.html')
+    if request.user:
+        edit_perm = request.user.has_perm('base/change_feature')
+        add_perm = request.user.has_perm('base/add_feature')
+    
+    features = Feature.objects.filter(active=True)
+
+    if edit_perm or add_perm:
+        features = Feature.objects.all()
+    
+
+    context =         {
+            "edit_perm": edit_perm,
+            "add_perm": add_perm,
+            "features": features
+        }
+
+    return render(request, 'base/home.html', context)
 
 def about_view(request):
     return render(request, 'base/about.html')

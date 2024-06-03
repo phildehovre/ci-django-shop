@@ -76,3 +76,13 @@ class ShippingInfo(models.Model):
 
     def __str__(self):
         return f"Shipping Info for Order #{self.order.id}"
+    
+    
+class Feature(models.Model):
+    image=models.ImageField(upload_to="feature_pictures")
+    active=models.BooleanField(default=False)
+    title=models.CharField(max_length=250)
+    subtitle=models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.title

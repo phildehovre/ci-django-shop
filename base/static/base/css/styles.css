@@ -3,8 +3,8 @@
     --clr-bg-secondary: white;
     --clr-txt-primary: black;
     --clr-txt-secondary: rgb(146, 146, 146);
-    --clr-cta-primary: rgb(44, 195, 255) ;
-    --clr-cta-secondary: rgb(191, 237, 255);
+    --clr-cta-primary: rgb(0, 0, 0) ;
+    --clr-cta-secondary: rgba(255, 255, 255, 0);
 
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
@@ -62,12 +62,13 @@
         text-decoration: none;
         color: var(--clr-cta-primary);
         text-transform: capitalize;
+        font-weight: bold;
     }
 
 }
 
 .btn_main:hover:not(.disabled) {
-    background-color: transparent;
+    background-color: white;
 }
 
 .btn_main.disabled {
@@ -157,6 +158,46 @@
     border: 1px solid orange;
     background-color: white;
     color: orange;
+}
+
+.feature_ctn {
+    background-image: var(--imageurl);
+    background-size: cover;
+    background-position: center;
+    height: 100svh;
+    position: relative;
+}
+
+
+.feature_ctn::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.171);
+}
+.feature_ctn > .feature_header {
+    padding:  1em 2.5em;
+    
+}
+.feature_ctn > .feature_header > h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+}
+.feature_ctn > .feature_header > h2 {
+    font-size: 1.5rem;
+}
+.feature_ctn > .feature_header {
+    background-color: rgba(255, 255, 255, 0.404);
+    color: black;
+    font-weight: bolder;
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    z-index: 99;
+    max-width: 500px;
 }
 
 /**

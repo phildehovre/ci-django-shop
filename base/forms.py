@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from .models import Profile, Address
+from .models import Profile, Address, Feature
 
 class UpdateProfileForm(forms.ModelForm):
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
@@ -21,3 +21,13 @@ class UpdateAddressForm(forms.ModelForm):
     class Meta:
         model = Address
         fields = ['name', 'address', 'city', 'postcode', 'country', 'additional', 'default']
+
+class UpdateFeatureForm(forms.ModelForm):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    title = forms.CharField(max_length=250)
+    subtitle = forms.CharField(max_length=250)
+    active = forms.BooleanField()
+
+    class Meta:
+        model = Feature
+        fields = ['title', 'subtitle', 'active', 'image']

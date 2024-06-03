@@ -1,21 +1,26 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<div id="carouselExampleIndicators" class="carousel slide">
+{% if add_perm %}
+{% endif %}
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      {% for feature in features %}
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/media/products/fairylights_eA7TEzv.jpg" class="d-block w-100" alt="...">
+    {% for feature in features %}
+      <div class="feature_ctn carousel-item {% if forloop.first %}active{% endif %}" style="--imageurl: url('{{ feature.image.url }}');">
+        <div class="feature_header">
+            <h1>{{ feature.title }}</h1>
+            <h2>{{ feature.subtitle }}</h2>
+            <button class="btn_main">
+                <a href="{% url 'shop' %}?tag={% for tag in feature.tags %}{{tag}},{% endfor %}">Start shopping</a>
+            </button>
+        </div>
+        <!-- <img src="{{ feature.image.url }}" class="d-block w-100" alt="{{ feature.title }}"> -->
       </div>
-      <div class="carousel-item">
-        <img src="/media/products/fairylights_eA7TEzv.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/media/products/fairylights_eA7TEzv.jpg" class="d-block w-100" alt="...">
-      </div>
+      {% endfor %}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
