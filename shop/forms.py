@@ -4,7 +4,7 @@ from .models import Product, ProductTag, Feature
 
 class UpdateProductForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    name = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'rows': 5}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
     tags = forms.ModelMultipleChoiceField(queryset=ProductTag.objects.all(), widget=forms.CheckboxSelectMultiple)
     stock = forms.IntegerField(min_value=0)

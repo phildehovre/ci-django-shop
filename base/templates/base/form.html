@@ -4,6 +4,9 @@
 
 {% block content %}
 <div class="form_ctn">
+    {% if heading %}
+    <h1>{{ heading }}</h1>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}

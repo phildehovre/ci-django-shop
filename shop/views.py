@@ -200,9 +200,10 @@ def add_product(request):
 
     context = {
         'page': page,
-        'form': form
+        'form': form,
+        'heading': "Add new product"
     }
-    return render(request, 'shop/add_product.html', context)
+    return render(request, 'base/form.html', context)
 
 @login_required
 def edit_product(request, pk):
@@ -223,9 +224,10 @@ def edit_product(request, pk):
         context = {
             'product': product,
             'page': page,
-            'form': form
+            'form': form,
+            'heading': 'Edit Product'
         }
-        return render(request, 'shop/add_product.html', context)
+        return render(request, 'base/form.html', context)
 
 
 @login_required

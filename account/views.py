@@ -26,7 +26,6 @@ def account_view(request):
             messages.error(request, f"There was an error: {str(e)}")
 
     user = request.user
-    print(user.has_perm( 'shop.add_product'))
 
     return render(request, 'account/account.html', {'page': page, 'account': profile, 'profile_form': profile_form})
 
