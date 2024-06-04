@@ -104,6 +104,7 @@
 
 .card {
     border-radius: 6px;
+    border: none;
     box-shadow: var(--box-shadow);
     display: flex;
     padding: .5em;
@@ -258,6 +259,39 @@
     margin: 0 auto;
 }
 
+
+.socials_ctn {
+    display: flex;
+    justify-content: center;;
+}
+
+
+.footer_links {
+    margin: 0 auto;
+}
+
+.footer_col > li {
+    list-style: none;
+    padding: .4rem 0;
+}
+.footer_col > li > a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.footer_col {
+    margin: 0 auto;
+}
+
+
+@media screen and (min-width: 600px) {
+    .footer_links {
+        margin: 0 auto;
+        display: flex;
+    }
+
+}
 
 /**
 ============================================== 

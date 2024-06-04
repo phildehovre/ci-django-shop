@@ -3,9 +3,41 @@
     {% block copyright %}Copyright Philippe De Hovre{% endblock copyright %}
   </p>
   <p class="m-0 text-center text-white">
-    Follow us: <i class="fab fa-facebook-square ms-3"></i>
-    <i class="fab fa-twitter-square ms-3"></i>
-    <i class="fab fa-instagram-square ms-3"></i>
+<div class="footer_links">
+  <ul class="footer_col">
+    <li>
+      <a href="{% url 'home' %}" class="footer_link">Home</a>
+    </li>
+    <li>
+      <a href="" class="footer_link">Contact</a>
+    </li>
+    <li>
+      <a href="{% url 'about' %}" class="footer_link">About</a>
+    </li>
+    <li>
+      <a href="{% url 'shop' %}" class="footer_link">Shop</a>
+    </li>
+  </ul>
+    <ul class="footer_col">
+    <li>
+      <a href="" class="footer_link">Jobs</a>
+    </li>
+    <li>
+      <a href="{% url 'basket' %}" class="footer_link">Basket</a>
+    </li>
+    <li>
+      <a href="" class="footer_link">Privacy</a>
+    </li>
+    <li>
+      <a href="" class="footer_link">Symmetry</a>
+    </li>
+  </ul>
+</div>
+    <div class="socials_ctn" style="color: black">
+      <i class="fab fa-facebook-square ms-3"></i>
+      <i class="fab fa-twitter-square ms-3"></i>
+      <i class="fab fa-instagram-square ms-3"></i>
     <i class="fab fa-youtube-square ms-3"></i>
+  </div>
   </p>
 </footer>

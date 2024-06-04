@@ -28,14 +28,6 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link {% if request.path == 'about' %}active{% endif %}"
-            aria-current="page"
-            href="{% url 'about' %}"
-            >About</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
             class="nav-link {% if request.path == 'shop' %}active{% endif %}"
             aria-current="page"
             href="{% url 'shop' %}"
@@ -57,7 +49,7 @@
             class="nav-link {% if request.path == 'basket' %}active{% endif %}"
             aria-current="page"
             href="{% url 'basket' %}"
-            >View basket</a
+            ><i class="fa-solid fa-cart"></i></a
           >
         </li>
         {% else %}
