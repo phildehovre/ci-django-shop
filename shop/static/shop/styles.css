@@ -17,6 +17,14 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
+}
+
+.product_detail_ctn {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .card  {
@@ -32,7 +40,7 @@
     
 }
 .product {
-    width: 350px;
+    width: 375px;
     display: flex;
     padding: 0;
     justify-content: center;
@@ -91,7 +99,7 @@
 
 .sidebar_ctn {
     list-style: none;
-    padding: 0;
+    padding-left: 2.5rem;
     margin: 0;
     min-width: 150px;
     color: var(--clr-txt-secondary);
