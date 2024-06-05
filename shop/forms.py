@@ -15,6 +15,10 @@ class UpdateProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'image', 'description', 'price', 'tags', 'stock']
 
+class ProductSpecsForm(forms.Form):
+    key = forms.CharField(max_length=100)
+    value = forms.CharField(max_length=100)
+
 class UpdateFeatureForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
     title = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'class': 'form-control'}))

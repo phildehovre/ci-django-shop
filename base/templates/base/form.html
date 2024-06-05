@@ -7,10 +7,44 @@
     {% if heading %}
     <h1>{{ heading }}</h1>
     {% endif %}
-    <form method="POST">
+{% if form %}
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn_main">Submit</button>
+        <h2>Specifications</h2>
+        <div id="specs-container">
+            <div>
+                <input type="text" name="key" placeholder="Key">
+                <input type="text" name="value" placeholder="Value">
+            </div>
+        </div>
+        <button type="button" onclick="addKeyValuePair()">Add another spec</button>
+        <button type="submit">Save</button>
+        <button type="submit" class="btn_main">Submit</button>
     </form>
-    </div>
+{% endif %}
+    
+
+</div>
+<script>
+    function addKeyValuePair() {
+        var container = document.getElementById("specs-container");
+        var div = document.createElement("div");
+
+        var keyInput = document.createElement("input");
+        keyInput.setAttribute("type", "text");
+        keyInput.setAttribute("name", "key");
+        keyInput.setAttribute("placeholder", "Key");
+
+        var valueInput = document.createElement("input");
+        valueInput.setAttribute("type", "text");
+        valueInput.setAttribute("name", "value");
+        valueInput.setAttribute("placeholder", "Value");
+
+        div.appendChild(keyInput);
+        div.appendChild(valueInput);
+
+        container.appendChild(div);
+    }
+</script>
 {% endblock content %}

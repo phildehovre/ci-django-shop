@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, OrderItem, ProductTag, Order, Feature
+from .models import Product, OrderItem, ProductTag, Order, Feature, ProductSpecs
 from base.models import Address
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .helpers import calculations
 from django.db.models import Q
-from .forms import UpdateProductForm, UpdateFeatureForm
+from .forms import UpdateProductForm, UpdateFeatureForm, ProductSpecsForm
 
 
 def shop_view(request, selected_tags=None):
@@ -181,29 +181,23 @@ def checkout_view(request):
 
 @login_required
 def add_product(request):
-    page = 'add'
-
-    if request.method == "POST":
-        form = UpdateProductForm(request.POST, request.FILES)  # Instantiate the form with request data
-        if form.is_valid():
-            form.save()  # Save the form data to the database
-            messages.success(request, f'Product was created successfully.')
-            return redirect('shop')
-        else:
-            print(form.errors)
-            messages.error(request, f"There was an error: Form is not valid.")
+    if request.method == 'POST':
+        product_form = UpdateProductForm(request.POST, request.FILES)
+        specs_form = ProductSpecsForm(request.POST)
+        if product_form.is_valid():
+            product = product_form.save()
+            specs = {}
+            keys = request.POST.getlist('key')
+            values = request.POST.getlist('value')
+            for key, value in zip(keys, values):
+                specs[key] = value
+            ProductSpecs.objects.create(product=product, specs=specs)
+            return redirect('shop')  # Replace with your actual product list view
     else:
-        form = UpdateProductForm()  # Instantiate an empty form for GET requests
-    
-    add_product_perm = request.user.has_perm('shop/add_product')
-    print(add_product_perm)
+        product_form = UpdateProductForm()
+        specs_form = ProductSpecsForm()
 
-    context = {
-        'page': page,
-        'form': form,
-        'heading': "Add new product"
-    }
-    return render(request, 'base/form.html', context)
+    return render(request, 'base/form.html', {'form': product_form, 'specs_form': specs_form})
 
 @login_required
 def edit_product(request, pk):
