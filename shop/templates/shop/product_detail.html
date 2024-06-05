@@ -1,9 +1,22 @@
 {% extends 'shop/base.html' %} {% block products %} {% if product %}
 <div class="product_detail_ctn">
-  <h2>{{ product.name }}</h2>
-  <img src="{{ product.image.url }}" alt="Image of {{ product.name }}"/>
-  <p>{{ product.description }}</p>
-  <form method="POST">
+  <div class="detail_ctn">
+    <div class="detail_left">
+
+      <h2>{{ product.name }}</h2>
+      <img src="{{ product.image.url }}" alt="Image of {{ product.name }}"/>
+      <p>{{ product.description }}</p>
+    </div>
+      <div class="detail_right">
+      {% for key, value in specs.items %}
+      <strong>
+        <p>{{ key }}:</p>
+      </strong>
+      <p>{{value}}</p>
+      {% endfor %}
+    </div>
+  </div>
+    <form method="POST">
     {% csrf_token %}
     <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
     <input type="submit" name="add_to_basket" value="Add to basket" />

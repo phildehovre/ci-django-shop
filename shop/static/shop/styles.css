@@ -23,8 +23,24 @@
 .product_detail_ctn {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    width: clamp(600px, 50svw, 768px);
     margin: 0 auto;
+}
+
+.detail_ctn {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail_left {
+    width: 100%;
+
+    > img {
+        width: 100%;
+    }
+}
+.detail_right {
+    width: 33%;
 }
 
 .card  {

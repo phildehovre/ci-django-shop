@@ -45,7 +45,7 @@ class ProductSpecs(models.Model):
     specs = JSONField()
 
     def __str__(self):
-        return "Specs for " + self.product.name
+        return self.specs
     
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

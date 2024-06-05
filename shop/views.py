@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .helpers import calculations
 from django.db.models import Q
 from .forms import UpdateProductForm, UpdateFeatureForm, ProductSpecsForm
+import json
 
 
 def shop_view(request, selected_tags=None):
@@ -64,10 +65,11 @@ def product_detail(request, pk):
     queryset = Product.objects.all()
     product = get_object_or_404(queryset, id=pk)
 
-    if request.method == "POST":
-        add_to_basket(request, product)
+
+    # Print JSON to console
+    print(json.dumps(product.productspecs.specs, indent=4))
          
-    return render(request, 'shop/product_detail.html', {"product": product})
+    return render(request, 'shop/product_detail.html', {"product": product, "specs": product.productspecs.specs})
 
 @login_required
 def update_basket(request):
