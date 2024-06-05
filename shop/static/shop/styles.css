@@ -25,22 +25,28 @@
     flex-direction: column;
     width: clamp(600px, 50svw, 768px);
     margin: 0 auto;
+    gap: 1rem;
 }
 
 .detail_ctn {
     display: flex;
     flex-direction: row;
+    border: 1px solid rgba(128, 128, 128, 0.233);
+    border-radius: 6px;
 }
 
 .detail_left {
+    padding: 1rem;
     width: 100%;
-
+    
     > img {
         width: 100%;
     }
 }
 .detail_right {
+    border-left: 1px solid rgba(128, 128, 128, 0.233);
     width: 33%;
+    padding: 1rem;
 }
 
 .card  {

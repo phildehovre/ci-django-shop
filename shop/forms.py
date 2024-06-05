@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Product, ProductTag, Feature
+from .models import Product, ProductTag, Feature, ProductImage
 
 class UpdateProductForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
@@ -18,6 +18,18 @@ class UpdateProductForm(forms.ModelForm):
 class ProductSpecsForm(forms.Form):
     key = forms.CharField(max_length=100)
     value = forms.CharField(max_length=100)
+
+class ProductImageForm(forms.Form):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    alt_text = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    is_default = forms.BooleanField(required=False)
+
+
+    class Meta:
+        model = ProductImage
+        fields = ['image', 'alt_text']
+
+
 
 class UpdateFeatureForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))

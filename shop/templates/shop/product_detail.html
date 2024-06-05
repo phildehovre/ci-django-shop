@@ -1,19 +1,51 @@
 {% extends 'shop/base.html' %} {% block products %} {% if product %}
 <div class="product_detail_ctn">
+  <div class="flex">
+    <h2>{{ product.name }}</h2>
+    {% if add_perm and edit_perm %}
+    <a class="action_link admin" href="{% url 'add_product' product.id %}"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
+  </div>
   <div class="detail_ctn">
     <div class="detail_left">
-
-      <h2>{{ product.name }}</h2>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          {% for image in images %}
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+          {% endfor %}
+        </div>
+        <div class="carousel-inner">
+        {% for image in images %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}" style="--imageurl: url('{{ feature.image.url }}');">
+            <img src="{{ image.image.url }}" class="d-block w-100" alt="">
+          </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
       <img src="{{ product.image.url }}" alt="Image of {{ product.name }}"/>
+      <h3>Description:</h3>
       <p>{{ product.description }}</p>
     </div>
       <div class="detail_right">
+        <h3>Specifications:</h3>
+        {% if specs %}
       {% for key, value in specs.items %}
       <strong>
         <p>{{ key }}:</p>
       </strong>
       <p>{{value}}</p>
       {% endfor %}
+      {% else %}
+        <p>No specifications</p>
+        {% endif %}
     </div>
   </div>
     <form method="POST">

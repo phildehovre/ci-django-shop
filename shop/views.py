@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, OrderItem, ProductTag, Order, Feature, ProductSpecs
+from .models import Product, OrderItem, ProductTag, Order, Feature, ProductSpecs, ProductImage
 from base.models import Address
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .helpers import calculations
 from django.db.models import Q
-from .forms import UpdateProductForm, UpdateFeatureForm, ProductSpecsForm
+from .forms import UpdateProductForm, UpdateFeatureForm, ProductSpecsForm, ProductImageForm
 import json
 
 
@@ -61,15 +61,31 @@ def add_to_basket(request, product):
         order_item = OrderItem.objects.create(product=product, quantity=quantity, order=order)
         messages.success(request, f"{product.name} ({quantity}) added to basket")
         
-def product_detail(request, pk):    
+
+def product_detail(request, pk):
     queryset = Product.objects.all()
     product = get_object_or_404(queryset, id=pk)
 
+    try:
+        specs = product.productspecs.specs
+    except ProductSpecs.DoesNotExist:
+        specs = {}
 
-    # Print JSON to console
-    print(json.dumps(product.productspecs.specs, indent=4))
-         
-    return render(request, 'shop/product_detail.html', {"product": product, "specs": product.productspecs.specs})
+    edit_perm = request.user.has_perm('shop.change_product')
+    add_perm = request.user.has_perm('shop.add_product')
+
+    images = ProductImage.objects.filter(product=product)
+
+    context = {
+        "product": product, 
+        "specs": specs,
+        "edit_perm": edit_perm,
+        "add_perm": add_perm,
+        "images": images
+    }
+
+    return render(request, 'shop/product_detail.html', context)
+
 
 @login_required
 def update_basket(request):
@@ -181,51 +197,69 @@ def checkout_view(request):
         'order': basket
     })
 
+def save_specs_and_images(product, request):
+    # Save product specs
+    specs = {}
+    keys = request.POST.getlist('key')
+    values = request.POST.getlist('value')
+    for key, value in zip(keys, values):
+        specs[key] = value
+    ProductSpecs.objects.update_or_create(product=product, defaults={'specs': specs})
+
+    # Save product images
+    images = request.FILES.getlist('images')
+    for image in images:
+        ProductImage.objects.create(product=product, image=image)
+
 @login_required
 def add_product(request):
+    page = "add"
     if request.method == 'POST':
         product_form = UpdateProductForm(request.POST, request.FILES)
         specs_form = ProductSpecsForm(request.POST)
         if product_form.is_valid():
             product = product_form.save()
-            specs = {}
-            keys = request.POST.getlist('key')
-            values = request.POST.getlist('value')
-            for key, value in zip(keys, values):
-                specs[key] = value
-            ProductSpecs.objects.create(product=product, specs=specs)
+            save_specs_and_images(product, request)
             return redirect('shop')  # Replace with your actual product list view
     else:
         product_form = UpdateProductForm()
         specs_form = ProductSpecsForm()
+        image_form = ProductImageForm()
 
-    return render(request, 'base/form.html', {'form': product_form, 'specs_form': specs_form})
+    return render(request, 'base/form.html', {
+        'page': page,
+        'form': product_form,
+        'specs_form': specs_form,
+        'image_form': image_form
+    })
 
 @login_required
 def edit_product(request, pk):
-        page = 'edit'
-        product = Product.objects.get(id=pk)
-        if request.method == "POST":
-            try:
-                form = UpdateProductForm(request.POST, request.FILES, instance=product)
-                if form.is_valid():
-                    form.save()
-                    messages.success(request, f'{product.name} was updated succesfully.')
-                    return redirect('shop')
-            except Exception as e:
-                messages.error(request, f"There was an error: {str(e)}")
+    page = 'edit'
+    product = get_object_or_404(Product, id=pk)
+    if request.method == "POST":
+        form = UpdateProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            product = form.save()
+            save_specs_and_images(product, request)
+            messages.success(request, f'{product.name} was updated successfully.')
+            return redirect('shop')
         else:
-            form = UpdateProductForm(instance=product)
+            messages.error(request, "There was an error with your form submission.")
+    else:
+        form = UpdateProductForm(instance=product)
+        specs_form = ProductSpecsForm(initial={'specs': product.productspecs.specs if hasattr(product, 'productspecs') else {}})
+        image_form = ProductImageForm()
 
-        context = {
-            'product': product,
-            'page': page,
-            'form': form,
-            'heading': 'Edit Product'
-        }
-        return render(request, 'base/form.html', context)
-
-
+    context = {
+        'product': product,
+        'page': page,
+        'form': form,
+        'specs_form': specs_form,
+        'image_form': image_form,
+        'heading': 'Edit Product'
+    }
+    return render(request, 'base/form.html', context)
 @login_required
 def edit_feature(request, pk):
         feature = Feature.objects.get(id=pk)
