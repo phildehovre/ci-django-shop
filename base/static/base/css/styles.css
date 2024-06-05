@@ -34,6 +34,22 @@
     }
 }
 
+.navbar {
+    display: flex;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.search_ctn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .profile_row {
     display: flex;
     align-items: center;
