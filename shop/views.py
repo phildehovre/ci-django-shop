@@ -44,9 +44,9 @@ def shop_view(request, selected_tags=None):
 
 
 @login_required
-def add_to_basket(request, product):
-    quantity = int(request.POST.get("quantity", 0))
-    product = Product.objects.get(id=product.id)
+def add_to_basket(request, pk):
+    quantity = int(request.POST.get("quantity", 1))
+    product = Product.objects.get(id=pk)
 
     try:
         order = Order.objects.get(user=request.user, status=0)
@@ -60,6 +60,8 @@ def add_to_basket(request, product):
         product.save()
         order_item = OrderItem.objects.create(product=product, quantity=quantity, order=order)
         messages.success(request, f"{product.name} ({quantity}) added to basket")
+
+    return redirect("shop")
         
 
 def product_detail(request, pk):
@@ -89,15 +91,13 @@ def product_detail(request, pk):
 
 @login_required
 def update_basket(request):
+    print("Updating basket")
     order_id = request.POST.get("order_item_id")
     input_quantity = int(request.POST.get("quantity"))
     order_item = OrderItem.objects.get(id=order_id)
     product = order_item.product
 
-    print("input:", input_quantity )
-
     diff = input_quantity - order_item.quantity
-    print(f"Differential: {diff}")
     # Check if quantity is the same as order_item quantity
     # if so, return to basket
     if (order_item.quantity == input_quantity):
@@ -145,7 +145,6 @@ def basket_view(request):
             update_basket(request)
 
     basket = OrderItem.objects.filter(Q(order__user=request.user), Q(order__status=0))
-
     return render(
          request, 
          'shop/basket.html', 
@@ -183,9 +182,14 @@ def checkout_view(request):
             
             # Redirect to confirmation page
             page = 'confirmation'
+
+            
         except Address.DoesNotExist:
             # Handle case when address doesn't exist
             messages.error(request, "Selected address does not exist.")
+        except Order.DoesNotExist:
+            messages.error(request, "This order does not exist or is being processed.")
+
         except Exception as e:
             messages.error(request, f"There was an error: {str(e)}")
 

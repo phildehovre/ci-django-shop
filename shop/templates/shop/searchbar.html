@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="searchbar_ctn" style="display: block; width: 100%;">
+    <div class="search_ctn">
+        <form method="POST">
+          {% csrf_token %}
+          <input type="search" placeholder="Search products..." name="search" />
+          <input type="submit" value="Search"/>
+        </form>
+      </div>
+</div>

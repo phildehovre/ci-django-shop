@@ -26,13 +26,11 @@
           <small>£{{ product.price|floatformat:2 }} </i></small>
         </div>
         <span style="display: flex; gap: .25rem">
-          <form method="POST" id="add_to_basket_form">
-            {% csrf_token %}
-            <input type="hidden" value="{{ product }}" name="product"/>
-            <button class="ATB_btn" id="add_to_basket_button">
-              <i class="fa-solid fa-cart-shopping"></i>
+            <button class="ATB_btn" id="add_to_basket_button" type="submit">
+              <a href="{% url 'add_to_basket' product.id %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
             </button>
-          </form >
             {% if edit_perm == True %}
             <a href="{% url 'edit_product' product.id %}" class="action_link admin">Edit</a>
           </span>

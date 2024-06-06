@@ -63,7 +63,7 @@
 <div class="card_ctn success">
   <h1>Your order was successfully placed:</h1>
   {{ order }}
-  {% for item in order_items %}
+  {% for item in order.items %}
     <small>{{ item.product.name }} | {{ item.quantity }}</small>
   {% endfor %}
 

@@ -36,12 +36,14 @@
 
 .navbar {
     display: flex;
-}
-
-.navbar-nav {
-    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    }
+    
+    .navbar-nav {
+        display: flex;
+        width: 100%;
     align-items: center;
-    justify-content: space-around;
 }
 
 .search_ctn {
@@ -128,6 +130,7 @@
     padding: var(--box-padding);
 
 }
+
 
 .page_ctn {
     display: flex;

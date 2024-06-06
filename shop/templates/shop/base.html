@@ -1,6 +1,7 @@
 {% extends "base/base.html" %} {% load humanize %} {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'shop/styles.css' %}">
+{% include 'shop/searchbar.html' %}
 <div class="shop_ctn">
   <div class="sidebar_layout">{% include 'shop/sidebar.html' %}</div>
   <div class="shop_layout">
