@@ -50,6 +50,7 @@ class ProductSpecs(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products')
+    alt=models.CharField(max_length=150)
 
     
 class Order(models.Model):

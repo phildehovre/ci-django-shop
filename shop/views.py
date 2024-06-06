@@ -209,7 +209,7 @@ def save_specs_and_images(product, request):
     # Save product images
     images = request.FILES.getlist('images')
     for image in images:
-        ProductImage.objects.create(product=product, image=image)
+        ProductImage.objects.create(product=product, image=image, alt=product)
 
 @login_required
 def add_product(request):

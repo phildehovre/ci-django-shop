@@ -30,19 +30,22 @@
 
 .detail_ctn {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.233);
     border-radius: 6px;
 }
 
 .detail_left {
     padding: 1rem;
-    width: 100%;
+    width: 100%;  
     
-    > img {
-        width: 100%;
+     img {
+        margin: 0 auto;
+        object-fit: cover;
+        min-height: 350px;
     }
 }
+
 .detail_right {
     border-left: 1px solid rgba(128, 128, 128, 0.233);
     width: 33%;
@@ -149,5 +152,11 @@
         .name {
             text-align: left;
         }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .detail_ctn {
+        flex-direction: row;
     }
 }

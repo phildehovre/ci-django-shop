@@ -21,13 +21,12 @@ class ProductSpecsForm(forms.Form):
 
 class ProductImageForm(forms.Form):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    alt_text = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    is_default = forms.BooleanField(required=False)
+    alt=forms.CharField(max_length=150)
 
 
     class Meta:
         model = ProductImage
-        fields = ['image', 'alt_text']
+        fields = ['image']
 
 
 
