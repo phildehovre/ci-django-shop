@@ -1,0 +1,42 @@
+
+.account_ctn {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: .5em;
+    width: 100%;
+    align-items: center;
+    
+    article {
+        min-height: 100px;
+        width: 400px;
+
+    }
+
+    i {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+
+.profile_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+    padding: var(--box-padding)
+}
+
+.profile_avatar_ctn {
+    border: 5px solid white;
+    box-shadow: var(--box-shadow);
+}
+
+.address {
+    justify-content: space-between;
+    text-align: left;
+}
