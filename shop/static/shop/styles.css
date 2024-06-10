@@ -104,7 +104,7 @@
     list-style: none;
 }
 
-.messages .error {
+.toast .error {
     margin: .5em;
     background-color: rgba(240, 128, 128, 0.459);
     border: 1px solid rgb(255, 69, 69);
@@ -113,13 +113,26 @@
     padding: .5em;
 }
 
-.messages .success {
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 5%;
+    background-color: lightgrey;
+}
+
+.toast .success {
     margin: .5em;
     padding: .5em;
     background-color: rgba(144, 238, 144, 0.418);
     border: 1px solid rgb(51, 196, 51);
     color: rgb(27, 114, 27);
     width: 100%;
+}
+
+.toast-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 
