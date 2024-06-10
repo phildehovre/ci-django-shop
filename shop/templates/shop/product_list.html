@@ -2,7 +2,7 @@
 {% if messages %}
 <ul class="list_ctn">
   {% for message in messages %}
-    <li class="{{ message.tags }}">{{ message }}</li>
+    <li class="message {{ message.tags }}">{{ message }}</li>
   {% endfor %}
 </ul>
 {% endif %}
@@ -26,11 +26,9 @@
           <small>£{{ product.price|floatformat:2 }} </i></small>
         </div>
         <span style="display: flex; gap: .25rem">
-            <button class="ATB_btn" id="add_to_basket_button" type="submit">
-              <a href="{% url 'add_to_basket' product.id %}">
+          <a class="ATB_btn"  href="{% url 'add_to_basket' product.id %}">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a>
-            </button>
             {% if edit_perm == True %}
             <a href="{% url 'edit_product' product.id %}" class="action_link admin">Edit</a>
           </span>
@@ -44,11 +42,6 @@
 
 {% block scripts %}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('add_to_basket_button').addEventListener('click', function() {
-    document.getElementById('add_to_basket_form').submit();
-  });
-});
   </script>
 </script>
 {% endblock scripts %}
