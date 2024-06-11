@@ -109,9 +109,5 @@ AWS_S3_USE_SSL = True
 AWS_S3_VERIFY = True
 
 MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-'https://phil-django-shop.s3.eu-north-1.amazonaws.com/django_shop/products/bath_toy.jpg'
-'https://phil-django-shop.s3.eu-north-1.amazonaws.com/django_shop/products/toy_car.jpg'
-'https://phil-django-shop.s3.amazonaws.com/products/toy_car.jpg'
