@@ -58,7 +58,14 @@ def add_to_basket(request, pk):
     else:
         product.stock -= quantity
         product.save()
-        order_item = OrderItem.objects.create(product=product, quantity=quantity, order=order)
+        # Check if item is already part of the order and increase
+        try:
+            print(order)
+            order_item = OrderItem.objects.get(product=product, order=order)
+            order_item.quantity += quantity
+            order_item.save()
+        except OrderItem.DoesNotExist:
+            order_item = OrderItem.objects.create(product=product, quantity=quantity, order=order)
         messages.success(request, f"{product.name} ({quantity}) added to basket")
 
     return redirect("shop")

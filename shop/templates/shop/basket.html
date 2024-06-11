@@ -2,16 +2,7 @@
 <h1>Basket</h1>
 
 {% comment %} <div class="basket_ctn"> {% endcomment %}
-  {% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-    <li class="{{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} {% if basket|length == 0 %}
-  <p>Your basket is empty</p>
-  <a href="{% url 'shop' %}">Start shopping</a>
-  {% endif %}
+  {% include 'base/toast.html' %}
   <div class="list_ctn">
     {% for order_item in basket %}
     <article class="card product">
