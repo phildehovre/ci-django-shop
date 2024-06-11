@@ -5,6 +5,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
+print("PATH", BASE_DIR)
+
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -91,7 +93,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'base', 'static'), 
     os.path.join(BASE_DIR, 'shop', 'static'), 
     os.path.join(BASE_DIR, 'account', 'static'), 
 ]
