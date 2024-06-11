@@ -1,6 +1,11 @@
 {% extends 'shop/base.html' %} {% block products %}
-
-{% include 'base/toast.html' %}
+{% if messages %}
+<ul class="list_ctn">
+  {% for message in messages %}
+    <li class="message {{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 {% if add_perm == True %}
 <div class="action_link admin">
   <i class="fa-solid fa-unlock-keyhole"></i>
@@ -35,5 +40,10 @@
   </div>
 </div>
 
+{% block scripts %}
+<script>
+  </script>
+</script>
+{% endblock scripts %}
 {% endblock products %}
 
