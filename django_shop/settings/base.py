@@ -93,9 +93,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'base', 'static'), 
-    os.path.join(BASE_DIR, 'shop', 'static'), 
-    os.path.join(BASE_DIR, 'account', 'static'), 
+    os.path.join(BASE_DIR,'staticfiles', 'base'), 
+    os.path.join(BASE_DIR,'staticfiles', 'shop'), 
+    os.path.join(BASE_DIR,'staticfiles', 'account'), 
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -111,7 +111,5 @@ AWS_S3_USE_SSL = True
 AWS_S3_VERIFY = True
 
 MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 

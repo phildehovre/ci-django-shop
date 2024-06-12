@@ -4,12 +4,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/staticfiles/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Use local storage for static files
 
 STORAGES = {
@@ -17,7 +17,7 @@ STORAGES = {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
     },
 
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+     "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
 }

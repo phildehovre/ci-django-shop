@@ -2,21 +2,16 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['django-shop.up.railway.app']
+ALLOWED_HOSTS = ['django-shop.up.railway.app', '127.0.0.1', 'localhost']
 
-STATIC_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/static/'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/staticfiles/'
 
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
     },
 
-    # "staticfiles": {
-    #     "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    # },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
 }
