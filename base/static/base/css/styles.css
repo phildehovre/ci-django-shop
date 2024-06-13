@@ -323,9 +323,19 @@ Utility classes - heavily inspired by tailwind
 
  */
 
-
 .flex {
     display: flex;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.top {
+    top: 16px;
+}
+.right {
+    right: 16px;
 }
 
 .w-full {
@@ -349,6 +359,9 @@ Utility classes - heavily inspired by tailwind
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
 
 .wrap {
     flex-wrap: wrap;

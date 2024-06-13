@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %} {% block products %}
 {% include 'base/toast.html' %}
 <div class="products_layout">
-  <a href="{% url 'add_product' %}" class="btn_main action_link admin"><i class="fa-solid fa-lock "></i>Manage products</a>
+  <a href="{% url 'add_product' %}" class="action_link admin"><i class="fa-solid fa-lock "></i>New products</a>
   <div class="list_ctn">
     {% for product in products %}
     <article class="card product">
@@ -18,7 +18,9 @@
                 <i class="fa-solid fa-cart-shopping"></i>
               </a>
             {% if edit_perm == True %}
-            <a href="{% url 'edit_product' product.id %}" class="action_link admin">Edit</a>
+            <a href="{% url 'edit_product' product.id %}" id="edit_btn" style="display: none;" class="action_link admin absolute top right hidden">
+              <i class="fa-solid fa-gear"></i>
+            </a>
           </span>
             {% endif %}
         </form>
@@ -27,9 +29,22 @@
     {% endfor %}
   </div>
 </div>
-
 {% block scripts %}
 <script>
+  const parents = document.querySelectorAll('.card.product')
+  parents.forEach((parent) => {
+    parent.addEventListener('mouseenter', () => {
+      const btn = parent.querySelector('#edit_btn')
+      btn.style = 'display: block'
+      })
+      parent.addEventListener('mouseleave', () => {
+      const btn = parent.querySelector('#edit_btn')
+      btn.style = 'display: none;'
+    })
+
+  }
+)
+  
   </script>
 </script>
 {% endblock scripts %}
