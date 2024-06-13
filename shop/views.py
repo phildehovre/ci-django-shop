@@ -14,10 +14,17 @@ def shop_view(request, selected_tags=None):
     product_list = Product.objects.all()
     product_tags = ProductTag.objects.all()
 
+    # Handle adding product to basket:
     if request.method == "POST":
+        if request.POST.get("quantity") and int(request.POST.get("quantity")) > 0:
+            print("Adding to basket")
+            pk = request.POST.get("pk")
+            add_to_basket(request, pk)
+
         selected_tags = request.POST.getlist("tag") if request.POST.getlist("tag") else ['all']
         search = request.POST.get('search')
         
+        # Handle filtering via tags:
         if selected_tags != ['all']:
             product_list = product_list.filter(tags__id__in=selected_tags)
         if search:
