@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block content %}
+    <div class="responsive_ctn">
 <h1>Orders</h1>
 {% block order_content %}
 {% for order in orders %} 
@@ -9,21 +11,22 @@
         <a href="{% url 'order_detail' order.id %}">
             {{ order }}
         </a>
-        {% for array in order_items %}
-        <ul>
-            {% for item in array %}
-                {% if item.order.id == order.id %}
-                <li>
-                    <small>{{item.product.name}}</small>
-                    <small>{{item.order.id}}</small>
-                </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    {% for array in order_items %}
+<ul>
+    {% for item in array %}
+{% if item.order.id == order.id %}
+<li>
+    <small>{{item.product.name}}</small>
+<small>{{item.order.id}}</small>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
         {% endfor %}
         </li>
     </ul>
 {% endfor %}
 {% endblock order_content %}
+</div>
 {% endblock content %}
 </ul>

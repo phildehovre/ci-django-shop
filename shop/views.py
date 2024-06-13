@@ -75,6 +75,12 @@ def product_detail(request, pk):
     queryset = Product.objects.all()
     product = get_object_or_404(queryset, id=pk)
 
+    if request.method == "POST":
+        try:
+            add_to_basket(request, pk)
+        except:
+            messages.error(request, "Something went wrong, please try again.")
+
     try:
         specs = product.productspecs.specs
     except ProductSpecs.DoesNotExist:

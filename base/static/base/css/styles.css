@@ -17,6 +17,14 @@
     body {
         color: rgb(66, 66, 66)
     }
+
+    .responsive_ctn {
+        margin: 0 auto;
+        width: 100%;
+        padding: 16px;
+    }
+
+
 .hamburger_trigger {
     border: 1px solid rgb(155, 163, 197);
     height: 40px;
@@ -306,13 +314,7 @@
 }
 
 
-@media screen and (min-width: 600px) {
-    .footer_links {
-        margin: 0 auto;
-        display: flex;
-    }
 
-}
 
 /**
 ============================================== 
@@ -374,4 +376,18 @@ Utility classes - heavily inspired by tailwind
 
 .gap-1 {
     gap: 2.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .responsive_ctn {
+        max-width: 1024px;
+    }
+
+}
+@media screen and (min-width: 600px) {
+    .footer_links {
+        margin: 0 auto;
+        display: flex;
+    }
+
 }
