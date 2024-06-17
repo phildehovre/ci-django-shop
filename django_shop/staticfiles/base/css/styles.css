@@ -11,6 +11,7 @@
     --box-padding: 1rem 2.5rem;
     --action_link-padding: .5rem 1rem;
     --action_link-radius: 6px;
+    --DEBUG: outline 1px solid red;
     }
 
 
@@ -323,9 +324,19 @@ Utility classes - heavily inspired by tailwind
 
  */
 
-
 .flex {
     display: flex;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.top {
+    top: 16px;
+}
+.right {
+    right: 16px;
 }
 
 .w-full {
@@ -349,6 +360,9 @@ Utility classes - heavily inspired by tailwind
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
 
 .wrap {
     flex-wrap: wrap;
