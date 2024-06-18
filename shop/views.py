@@ -158,6 +158,7 @@ def basket_view(request):
             update_basket(request)
 
     basket = OrderItem.objects.filter(Q(order__user=request.user), Q(order__status=0))
+    print(len(basket))
     return render(
          request, 
          'shop/basket.html', 
@@ -174,6 +175,7 @@ def checkout_view(request):
     order = Order.objects.get(user=request.user, status=0)
     basket = OrderItem.objects.filter(order__user=request.user, order=order)
     addresses = Address.objects.filter(user=request.user).order_by('-default')
+ 
 
     if len(addresses) == 0:
         messages.error(request, f"There are no shipping addresses, please enter your address in you account settings")
@@ -182,6 +184,8 @@ def checkout_view(request):
          redirect('shop')
 
     if request.method == "POST":
+        if order.DoesNotExist:
+            redirect('shop')
         try:
             if address_id:
                 address = Address.objects.get(id=address_id)
