@@ -61,7 +61,7 @@ This is an online shop built with Django, allowing users to browse products, add
 
     ```bash
     git clone https://github.com/phildehovre/ci-django-shop.git
-    cd onlineshop
+    cd ci-django-shop
     ```
 
 2. **Create and activate a virtual environment:**
