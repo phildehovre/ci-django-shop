@@ -25,8 +25,8 @@ This is an online shop built with Django, allowing users to browse products, add
 - Product browsing and searching
 - Shopping cart functionality
 - Order and checkout process
-- Payment integration (e.g., Stripe or PayPal)
-- Order history and tracking
+- Potential payment integration
+- Order history
 - Admin panel for managing products, orders, and users
 
 ## Tech Stack
