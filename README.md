@@ -1,4 +1,5 @@
 # Online Shop
+## [Visit the shop](https://django-shop.up.railway.app/)
 
 ## Table of Contents
 
@@ -59,7 +60,7 @@ This is an online shop built with Django, allowing users to browse products, add
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/onlineshop.git
+    git clone https://github.com/phildehovre/ci-django-shop.git
     cd onlineshop
     ```
 
@@ -94,32 +95,18 @@ This is an online shop built with Django, allowing users to browse products, add
     python manage.py runserver
     ```
 
-7. **(Optional) If using a JavaScript frontend:**
-
-    ```bash
-    cd frontend
-    npm install
-    npm start
-    ```
-
 ## Usage
 
-- Visit `http://127.0.0.1:8000/` to browse the shop.
-- Access the admin panel at `http://127.0.0.1:8000/admin/` to manage products, orders, and users.
+- Visit `https://django-shop.up.railway.app/` to browse the shop.
+- e-mail [me@philippedehovre.com](mailto:me@philippedehovre.com) to test the admin functionality
 
 ## Configuration
 
 - **Database Configuration:** Update the `DATABASES` setting in `settings.py` to configure your database.
-- **Payment Integration:** Add your payment gateway API keys in the `settings.py`.
-- **Email Settings:** Configure email backend and settings for sending order confirmations and other notifications.
 
 ## Testing
 
-Run the tests using the following command:
-
-```bash
-python manage.py test
-```
+No tests were implemented for this project.
 
 ## Contributing
 
@@ -138,5 +125,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or issues, please contact [your-email@example.com](mailto:your-email@example.com).
+For any inquiries or issues, please contact [me@philippedehovre.com](mailto:me@philippedehovre.com).
 
