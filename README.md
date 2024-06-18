@@ -97,7 +97,7 @@ This is an online shop built with Django, allowing users to browse products, add
 
 ## Usage
 
-- Visit `https://django-shop.up.railway.app/` to browse the shop.
+- Visit [the actual project](https://django-shop.up.railway.app/) to browse the shop.
 - e-mail [me@philippedehovre.com](mailto:me@philippedehovre.com) to test the admin functionality
 
 ## Configuration
