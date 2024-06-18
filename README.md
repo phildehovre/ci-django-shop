@@ -121,7 +121,7 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Copyright 2024 Philippe De Hovre, all rights reserved.
 
 ## Contact
 
