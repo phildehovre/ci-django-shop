@@ -17,7 +17,7 @@
 
 ## Project Overview
 
-This is an online shop built with Django, allowing users to browse products, add items to their cart, and complete purchases.
+This is an online shop built with Django, allowing users to browse products, add items to their cart, and complete purchases. It has a limited admin functionality that allows certain users to add and or edit products.
 
 ## Features
 
