@@ -9,9 +9,8 @@ print("PATH", BASE_DIR)
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[])
 
 CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app']
 
@@ -91,6 +90,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'staticfiles', 'base'), 
     os.path.join(BASE_DIR,'staticfiles', 'shop'), 
@@ -110,5 +111,6 @@ AWS_S3_USE_SSL = True
 AWS_S3_VERIFY = True
 
 MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
+print(AWS_S3_CUSTOM_DOMAIN)
 
 
