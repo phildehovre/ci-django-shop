@@ -32,10 +32,9 @@ This is an online shop built with Django, allowing users to browse products, add
 ## Tech Stack
 
 - **Backend:** Django, Django REST framework
-- **Frontend:** HTML, CSS, JavaScript (optional: React/Vue.js for a more dynamic frontend)
-- **Database:** SQLite (for development), PostgreSQL/MySQL (for production)
-- **Payment Gateway:** Stripe, PayPal
-- **Other:** Docker (for containerization), Nginx (for serving static files), Gunicorn (as WSGI HTTP Server)
+- **Frontend:** HTML, CSS, JavaScript
+- **Database:** SQLite (for development), PostgreSQL (for production)
+- **Other:** Docker (for containerization), AWS S3 (for serving static files), Gunicorn (as WSGI HTTP Server)
 
 ## Installation
 
@@ -43,7 +42,6 @@ This is an online shop built with Django, allowing users to browse products, add
 
 - Python 3.x
 - pip (Python package installer)
-- Node.js and npm (if using a JavaScript frontend framework)
 - Docker (optional, for containerization)
 
 ### Setting Up Locally
