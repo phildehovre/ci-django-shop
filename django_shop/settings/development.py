@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = True
+DEBUG = config('DEBUG') 
 
 ALLOWED_HOSTS = ['django-shop.up.railway.app','127.0.0.1', 'localhost']
 
