@@ -17,6 +17,16 @@
 
 ## Project Overview
 
+### Context:
+This project was created within the context of the Code Institute Full-Stack Bootcamp, February 2024 intake.
+
+### Technical constraints:
+
+The computer this project was developed on did not allow for the installation of node or npm. 
+Developing using only vanilla JS is always an interesting constraint as it is easy to rely too much on contemporary front-end frameworks.
+
+### The project:
+
 This is an online shop built with Django, allowing users to browse products, add items to their cart, and complete purchases. It has a limited admin functionality that allows certain users to add and or edit products.
 
 ## Features
