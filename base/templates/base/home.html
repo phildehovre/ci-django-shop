@@ -34,9 +34,7 @@
         <div class="feature_header">
             <h1>{{ feature.title }}</h1>
             <h2>{{ feature.subtitle }}</h2>
-            <button class="btn_main">
-                <a href="{% url 'shop' %}?tag={% for tag in feature.tags.all %}{{tag.id}},{% endfor %}">Start shopping</a>
-            </button>
+                <a class="btn_main" href="{% url 'shop' %}?tag={% for tag in feature.tags.all %}{{tag.id}},{% endfor %}">Start shopping</a>
         </div>
         <!-- <img src="{{ feature.image.url }}" class="d-block w-100" alt="{{ feature.title }}"> -->
       </div>

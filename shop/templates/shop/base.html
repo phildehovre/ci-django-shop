@@ -2,13 +2,16 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'shop/styles.css' %}">
 {% include 'shop/searchbar.html' %}
-<div class="shop_ctn">
-  <div class="sidebar_layout">{% include 'shop/sidebar.html' %}</div>
-  <div class="shop_layout">
-    {% include 'base/toast.html' %}
-    {% block products %}
-    <!-- Product list -->
-    {% endblock products %}
+<div class="responsive_ctn">
+
+  <div class="shop_ctn">
+    <div class="sidebar_layout">{% include 'shop/sidebar.html' %}</div>
+    <div class="shop_layout">
+      {% include 'base/toast.html' %}
+      {% block products %}
+      <!-- Product list -->
+      {% endblock products %}
+    </div>
   </div>
 </div>
 {% endblock content %}

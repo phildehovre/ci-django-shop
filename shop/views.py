@@ -193,7 +193,8 @@ def checkout_view(request):
                 address = Address.objects.filter(user=request.user, default=True).first()
 
             # Update order status
-            order.status = 2
+            # CHANGE THIS TO 0 FOR DEBUG
+            order.status = 0
             order.shipping = address
             order.save()
             
@@ -215,7 +216,8 @@ def checkout_view(request):
         'total': calculations.calculate_total(basket),
         'page': page,
         'addresses': addresses,
-        'order': basket
+        'order': basket,
+        'shipping': address
     })
 
 def save_specs_and_images(product, request):

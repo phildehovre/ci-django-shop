@@ -88,7 +88,11 @@
     border: 1px solid var(--clr-cta-border-light);
     padding: 1em;
     transition: all 250ms ease-in-out;
-
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
     a {
         text-decoration: none;
         color: var(--clr-cta-primary);
@@ -100,6 +104,8 @@
 
 .btn_main:hover:not(.disabled) {
     background-color: white;
+    text-decoration: none;
+    color: black;
 }
 
 .btn_main.disabled {

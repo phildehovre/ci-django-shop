@@ -12,9 +12,7 @@
   </form>
   {% endif %} {% if page == 'profile' %}
   <h1>Your profile</h1>
-  <button>
     <a href="{% url 'account' %}">Edit profile</a>
-  </button>
   <div class="profile_row">
     <h2>Name:</h2>
     <p>{{ profile.user.username }}</p>

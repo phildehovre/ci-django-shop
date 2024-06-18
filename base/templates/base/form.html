@@ -18,12 +18,12 @@
                 <input type="text" name="value" placeholder="Value">
             </div>
         </div>
-        <button type="button" onclick="addKeyValuePair()">Add another spec</button>
+        <button aria-label="Add new specification" type="button" onclick="addKeyValuePair()">Add another spec</button>
         <h2>Images</h2>
         {% if page == "add" or page == "edit" %}
         <input type="file" name="images" multiple>
         {% endif %}
-        <button type="submit" class="btn_main">Submit</button>
+        <button aria-label="submit form" type="submit" class="btn_main">Submit</button>
     </form>
     {% endif %}
     
