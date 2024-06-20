@@ -30,6 +30,16 @@ Developing using only vanilla JS is always an interesting constraint as it is ea
 
 This is an online shop built with Django, allowing users to browse products, add items to their cart, and complete purchases. It has a limited admin functionality that allows certain users to add and or edit products.
 
+### Development:
+
+I drew inspiration for the design from a widely recognized and highly popular online shopping platform. The objective of my implementation is to provide a comprehensive overview of the various facets involved in running an online shop. This high-level perspective aims to cover the essential components and functionalities without delving into the minutiae of each detail. Implementing every single aspect with full fidelity would be a significantly more time-consuming endeavor than the duration of this bootcamp permits.
+
+- Database implementation:
+
+
+![Database diagram](https://github.com/phildehovre/ci-django-shop/assets/66724307/138cda10-9ae2-46a3-b874-4618990c60c3)
+
+
 ## Features
 
 - User registration and authentication
