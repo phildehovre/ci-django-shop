@@ -25,7 +25,7 @@
         {% endif %}
         <button aria-label="submit form" type="submit" class="btn_main">Submit</button>
     </form>
-    {% if page == "add" or page == "edit" %}
+    {% if page == "edit" %}
     {% include 'shop/delete_product_modal.html' %}
         <a class="btn_main danger modal_trigger destructive" onclick="handleTriggerClick()">Delete this product</a>
         {% endif %}
