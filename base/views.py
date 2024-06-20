@@ -47,6 +47,9 @@ def login_view(request):
                 # if profile is None:
                 #     profile = Profile.objects.create(user=request.user)
                 #     profile.save()
+                if user.is_superuser:
+                    messages.success(request, 'You are logged in as administrator')
+
                 return redirect('shop')
         except:
             messages.error(request, 'Username or password incorrect')   

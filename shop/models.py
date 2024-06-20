@@ -78,21 +78,6 @@ class OrderItem(models.Model):
     def total_item_price(self):
         return self.quantity * self.product.price
     
-class ShippingInfo(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE)
-    address = models.CharField(max_length=200)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=20)
-    country = models.CharField(max_length=100)
-    shipping_method = models.CharField(max_length=100)
-    shipping_status = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"Shipping Info for Order #{self.order.id}"
-        
-
-    
 class Feature(models.Model):
     image=models.ImageField(upload_to="feature_pictures")
     active=models.BooleanField(default=False)
