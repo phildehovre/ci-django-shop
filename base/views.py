@@ -69,6 +69,7 @@ def user_register(request):
             form = UserCreationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
+                
                 # The commit=False argument passed to the save() method 
                 # indicates that the changes made to the user instance 
                 # should not be immediately saved to the database. 

@@ -105,8 +105,13 @@ def settings_view(request):
         if request.method == 'POST':
             address_form = UpdateAddressForm(request.POST, instance=address)
             try:
+                is_default = False
+                if len(addresses) == 0:
+                    is_default = True
                 if address_form.is_valid():
                     address = address_form.save(commit=False)
+                    print(f"There are {len(addresses)} addresses for this user.")
+                    address.default = is_default
                     address.user = request.user 
                     address.save()
                     return redirect('settings')

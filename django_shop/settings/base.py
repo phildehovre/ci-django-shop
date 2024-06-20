@@ -5,8 +5,6 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-print("PATH", BASE_DIR)
-
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG')

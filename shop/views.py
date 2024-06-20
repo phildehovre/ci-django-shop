@@ -13,6 +13,8 @@ def shop_view(request, selected_tags=None):
     page = "product_list"
     product_list = Product.objects.all()
     product_tags = ProductTag.objects.all()
+    toast_action_label = "View basket"
+    toast_action_url = "/shop/basket"
 
     if request.method == "POST":
         selected_tags = request.POST.getlist("tag") if request.POST.getlist("tag") else ['all']
@@ -38,7 +40,9 @@ def shop_view(request, selected_tags=None):
             "selected_tags": selected_tags,
             'page': page,
             "edit_perm": edit_perm,
-            "add_perm": add_perm
+            "add_perm": add_perm,
+            "toast_action_url": toast_action_url,
+            "toast_action_label": toast_action_label,
         }
     )
 
@@ -175,13 +179,14 @@ def checkout_view(request):
     order = Order.objects.get(user=request.user, status=0)
     basket = OrderItem.objects.filter(order__user=request.user, order=order)
     addresses = Address.objects.filter(user=request.user).order_by('-default')
- 
+    address = None
+    toast_action_url = ""
+    toast_action_label = ""
 
     if len(addresses) == 0:
+        toast_action_url = "/account/settings"
+        toast_action_label = "Go to settings"
         messages.error(request, f"There are no shipping addresses, please enter your address in you account settings")
-
-    if order.DoesNotExist:
-         redirect('shop')
 
     if request.method == "POST":
         if order.DoesNotExist:
@@ -217,7 +222,9 @@ def checkout_view(request):
         'page': page,
         'addresses': addresses,
         'order': basket,
-        'shipping': address
+        'shipping': address,
+        'toast_action_url': toast_action_url,
+        "toast_action_label": toast_action_label
     })
 
 def save_specs_and_images(product, request):
