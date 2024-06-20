@@ -36,8 +36,7 @@ I drew inspiration for the design from a widely recognized and highly popular on
 
 - Database implementation:
 
-[Database diagram](https://lucid.app/lucidchart/invitations/accept/inv_964c7875-a131-475d-886d-c157032adb8d)
-
+![Database diagram](https://github.com/phildehovre/ci-django-shop/assets/66724307/184c32ce-e9e9-42d2-8031-37565b02b45f)
 
 ## Features
 
