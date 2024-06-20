@@ -50,7 +50,6 @@ def login_view(request):
                 return redirect('shop')
         except:
             messages.error(request, 'Username or password incorrect')   
-            return redirect('home')
 
     return render(request, 'base/login_register.html', {'page': page})
 

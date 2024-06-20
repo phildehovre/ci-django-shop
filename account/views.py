@@ -76,7 +76,6 @@ def settings_view(request):
     profile = Profile.objects.filter(user=request.user).first()
     profile_form = UpdateProfileForm(request.POST, instance=request.user.profile)
 
-
     if request.method == "POST" and page == 'edit':
         try:
             profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
@@ -116,7 +115,6 @@ def settings_view(request):
         else:
             # Initialize the form with the address instance
             address_form = UpdateAddressForm(instance=address)
-
        
 
     return render(request, 
@@ -126,7 +124,8 @@ def settings_view(request):
                     'profile_form': profile_form, 
                     'page': page,
                     'addresses': addresses,
-                    'address_form': address_form
+                    'address_form': address_form,
+                    'avatar_placeholder': request.user.username[:1].upper()
                 })
 
 def delete_address(request, pk):

@@ -6,6 +6,7 @@
     --clr-cta-primary: rgb(49, 49, 49) ;
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
+    --clr-cta-border-light: rgba(0, 0, 0, 0.192);
 
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
@@ -45,15 +46,15 @@
 
 .navbar {
     display: flex;
-    justify-content: flex-end;
     width: 100%;
-    }
-    
+}
+
 .navbar-nav {
     display: flex;
     width: 100%;
     gap: 1rem;
     align-items: center;
+    justify-content: flex-end;
 }
 
 
@@ -73,6 +74,23 @@
     width: 5em;
     border-radius: 100%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .avatar_placeholder {
+        outline:1px solid red;
+        font-size: 5rem;
+        color: dodgerBlue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
 }
 
 .profile_avatar {
@@ -84,10 +102,14 @@
 .btn_main {
     border-radius: 6px;
     background-color: var(--clr-cta-secondary);
-    border: 1px solid var(--clr-cta-primary);
+    border: 1px solid var(--clr-cta-border-light);
     padding: 1em;
     transition: all 250ms ease-in-out;
-
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
     a {
         text-decoration: none;
         color: var(--clr-cta-primary);
@@ -99,6 +121,8 @@
 
 .btn_main:hover:not(.disabled) {
     background-color: white;
+    text-decoration: none;
+    color: black;
 }
 
 .btn_main.disabled {
@@ -281,7 +305,7 @@
     padding: .5em;
     background-color: transparent;
     border-radius: var(--action_link-radius);
-    border: 1px solid var(--clr-cta-primary);
+    border: 1px solid var(--clr-cta-border-light);
 }
 
 .form_ctn {
@@ -315,7 +339,38 @@
 }
 
 
+.modal_ctn {
+    display: none;
+}
 
+.modal_ctn.visible {
+    display: block;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.151);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.modal_content {
+    position: absolute;
+    border: none;
+    border-radius: 16px;
+    max-width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2.5rem;
+}
+
+.modal_content > form {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
 
 /**
 ============================================== 

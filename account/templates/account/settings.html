@@ -10,7 +10,14 @@
   <h1 class="page_section_heading">Profile</h1>
   <div class="profile_header">
     <div class="profile_avatar_ctn">
+
+  {%  if profile.avatar %}
       <img class="profile_avatar" src="{{ user.profile.avatar.url }}" />
+      {% else %}
+      <div class="profile_avatar avatar_placeholder">
+        {{avatar_placeholder}}
+      </div>
+      {% endif %}
     </div>
     <h3>{{ profile.user.username|title }}</h3>
     <p>{{ profile.bio }}</p>

@@ -28,12 +28,27 @@
     align-items: center;
     border-radius: 6px;
     box-shadow: var(--box-shadow);
-    padding: var(--box-padding)
+    padding: var(--box-padding);
+    
+    > p {
+        width: 100%;
+        text-overflow: ellipsis;
+    }
 }
+
 
 .profile_avatar_ctn {
     border: 5px solid white;
     box-shadow: var(--box-shadow);
+}
+
+.avatar_placeholder {
+    font-size: 5rem;
+    color: dodgerBlue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .address {

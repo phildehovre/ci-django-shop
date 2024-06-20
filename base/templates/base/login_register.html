@@ -1,14 +1,6 @@
 {% extends 'base/base.html' %} {% block content %}
 {% load static %}
-{% if messages %}
-<ul>
-    {% for message in messages %}
-    <li class="{{ message.tags }}">
-        {{ message }}
-    </li>
-        {% endfor %}
-    </ul>
-{% endif %}
+{% include 'base/toast.html' %}
 <div class="page_ctn w-full">
 
     {% if page == 'login' %}
