@@ -36,7 +36,8 @@ I drew inspiration for the design from a widely recognized and highly popular on
 
 - Database implementation:
 
-![Database diagram](https://github.com/phildehovre/ci-django-shop/assets/66724307/184c32ce-e9e9-42d2-8031-37565b02b45f)
+![dDatabase diagram](https://github.com/phildehovre/ci-django-shop/assets/66724307/ed6fba57-8c56-40c9-8396-25241370f9cb)
+
 
 ## Features
 
