@@ -257,9 +257,25 @@ def add_product(request):
     })
 
 @login_required
+def delete_product(request, pk):
+    product=get_object_or_404(Product, id=pk)
+    try:
+        product.delete()
+        messages.success(request, f"{product.name} was deleted successfully")
+        return redirect('shop')
+    except Exception as e:
+        messages.error(request, f"An error occurred, product {product.name} was not deleted")
+
+
+        
+
+@login_required
 def edit_product(request, pk):
     page = 'edit'
     product = get_object_or_404(Product, id=pk)
+    if request.method == "DELETE":
+        print(f"Delete {product}")
+
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
@@ -282,7 +298,8 @@ def edit_product(request, pk):
         'image_form': image_form,
         'heading': 'Edit Product'
     }
-    return render(request, 'base/form.html', context)
+    return render(request, 'base/form.html', context)#
+
 @login_required
 def edit_feature(request, pk):
         feature = Feature.objects.get(id=pk)

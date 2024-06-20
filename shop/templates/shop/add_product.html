@@ -1,5 +1,6 @@
 {% extends 'shop/base.html' %}
 {% block content %}
+{% include 'shop/delete_product_modal.html' % }
 <h1>{{ page|title }} product</h1>
 {{ product.name }}
 <form method="POST" enctype="multipart/form-data">
@@ -7,4 +8,20 @@
     {{ form.as_p }}
     <input type="submit" />
 </form>
+
+<button class="btn_main danger modal_trigger">Delete this product</button>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+  const trigger = document.querySelector('.modal_trigger')
+  
+  trigger.addEventListener('click', () => {console.log('Pow!')})
+})
+
+function handleTriggerClick() {
+  const modal = document.querySelector('.modal_ctn')
+  modal.classList.toggle('visible')
+  
+}
+</script>
 {% endblock content %}

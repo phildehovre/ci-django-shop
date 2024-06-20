@@ -7,7 +7,7 @@
     {% if heading %}
     <h1>{{ heading }}</h1>
     {% endif %}
-{% if form %}
+    {% if form %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
@@ -25,6 +25,10 @@
         {% endif %}
         <button aria-label="submit form" type="submit" class="btn_main">Submit</button>
     </form>
+    {% if page == "add" or page == "edit" %}
+    {% include 'shop/delete_product_modal.html' %}
+        <a class="btn_main danger modal_trigger" onclick="handleTriggerClick()">Delete this product</a>
+        {% endif %}
     {% endif %}
     
 
@@ -49,5 +53,18 @@
 
         container.appendChild(div);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+  const trigger = document.querySelector('.modal_trigger')
+  
+  trigger.addEventListener('click', () => {console.log('Pow!')})
+})
+
+function handleTriggerClick() {
+  const modal = document.querySelector('.modal_ctn')
+  modal.classList.toggle('visible')
+  
+}
 </script>
 {% endblock content %}
