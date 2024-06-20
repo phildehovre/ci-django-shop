@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<div class="form_ctn">
+<div class="form_ctn flex flex-col gap-1">
     {% if heading %}
     <h1>{{ heading }}</h1>
     {% endif %}
@@ -27,7 +27,7 @@
     </form>
     {% if page == "add" or page == "edit" %}
     {% include 'shop/delete_product_modal.html' %}
-        <a class="btn_main danger modal_trigger" onclick="handleTriggerClick()">Delete this product</a>
+        <a class="btn_main danger modal_trigger destructive" onclick="handleTriggerClick()">Delete this product</a>
         {% endif %}
     {% endif %}
     

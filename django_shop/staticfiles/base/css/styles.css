@@ -118,6 +118,11 @@
     background-color: white;
 }
 
+.btn_main.danger {
+    border: 1px solid darkred;
+    color: rgb(163, 0, 0);
+}
+
 .btn_secondary {
     border-radius: 6px;
     background-color: transparent;
@@ -258,6 +263,12 @@
     flex-direction: column;
 } 
 
+
+.form_ctn {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
 
 .form_ctn > form > h1 {
     text-align: center;
@@ -437,7 +448,7 @@ Utility classes - heavily inspired by tailwind
 
 @media screen and (min-width: 1024px) {
     .responsive_ctn {
-        max-width: 1024px;
+        max-width: 90%;
     }
 
 }

@@ -28,7 +28,12 @@
     align-items: center;
     border-radius: 6px;
     box-shadow: var(--box-shadow);
-    padding: var(--box-padding)
+    padding: var(--box-padding);
+    
+    > p {
+        width: 100%;
+        text-overflow: ellipsis;
+    }
 }
 
 
