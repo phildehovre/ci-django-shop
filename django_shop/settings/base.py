@@ -5,6 +5,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 LOGIN_URL="/login"
+
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG')
@@ -35,6 +36,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS="ALLOW FROM https://ui.dev"
 
 ROOT_URLCONF = 'django_shop.urls'
 
