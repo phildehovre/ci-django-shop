@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-
+LOGIN_URL="/login"
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG')
