@@ -58,7 +58,7 @@ def shop_view(request, selected_tags=None):
 def add_to_basket(request, pk):
     quantity = int(request.POST.get("quantity", 1))
     product = Product.objects.get(id=pk)
-
+    
     try:
         order = Order.objects.get(user=request.user, status=0)
     except Order.DoesNotExist:
