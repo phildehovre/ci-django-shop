@@ -447,7 +447,7 @@ Utility classes - heavily inspired by tailwind
 
 @media screen and (min-width: 1024px) {
     .responsive_ctn {
-        max-width: 1024px;
+        max-width: 2000px;
     }
 
 }

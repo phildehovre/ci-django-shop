@@ -307,7 +307,7 @@ def edit_product(request, pk):
             product = form.save()
             save_specs_and_images(product, request)
             messages.success(request, f'{product.name} was updated successfully.')
-            return redirect(f'shop/product/{product.id}')
+            return redirect(f'/shop/product/{product.id}')
         else:
             messages.error(request, "There was an error with your form submission.")
     else:

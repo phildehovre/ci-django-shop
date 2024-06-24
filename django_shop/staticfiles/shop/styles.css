@@ -24,7 +24,7 @@
 .product_detail_ctn {
     display: flex;
     flex-direction: column;
-    width: clamp(600px, 50svw, 768px);
+    width: clamp(500px, 50svw, 768px);
     margin: 0 auto;
     gap: 1rem;
 }
@@ -174,7 +174,48 @@
 }
 
 @media screen and (min-width: 768px) {
+    
     .detail_ctn {
         flex-direction: row;
     }
+}
+
+@media screen and (max-width: 500px) {
+    
+.shop_ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+.sidebar_ctn {
+    padding: 0;
+    width: 100%;
+}
+.sidebar_ctn > form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.sidebar_ctn li label {
+    cursor: pointer;
+    padding: .4rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+
+}
+.sidebar_ctn input[type="checkbox"]:checked + label {
+    background-color: skyblue;
+    color: white;
+}
+
+    .sidebar_ctn label:hover {
+        border: 1px solid lightgrey;
+        border-radius: 6px;
+    }
+.sidebar_ctn input {
+    display: none;
+}
 }
