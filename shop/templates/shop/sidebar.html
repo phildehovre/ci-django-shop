@@ -19,8 +19,11 @@
         %}
         name="tag"
         value="{{ tag.id }}"
+        id="{{tag.name}}"
       />
-      {{ tag.name }}
+      <label for="{{tag.name}}">
+        {{ tag.name }}
+      </label>
     </li>
     {% endfor %}
   </form>
