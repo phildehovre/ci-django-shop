@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %} {% load static %} {% block content %}
 <a href="{% url  'account' %}">Back</a>
-<div class="page_ctn">
+<div class="responsive_ctn">
   {% if page == 'edit' %}
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %} {{ profile_form.as_p }}
@@ -33,7 +33,7 @@
   <h1 class="page_section_heading">Shipping options</h1>
   {% if addresses|length == 0 %}
   <p>You have not provided an address yet.</p>
-  <a href="{% url 'settings' %}?q=address" class="user_action_link w-full text-right">Add an address
+  <a href="{% url 'settings' %}?q=address" class="action_link text-right">Add an address
     <i class="fa-solid fa-plus"></i>
   </a>
   {% else %}
