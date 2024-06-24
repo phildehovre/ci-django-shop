@@ -439,7 +439,7 @@ Utility classes - heavily inspired by tailwind
 }
 
 .destructive {
-    color: crimson
+    color: red
 }
 
 .gap-1 {
