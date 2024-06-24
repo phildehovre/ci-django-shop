@@ -14,13 +14,20 @@
           <small>£{{ product.price|floatformat:2 }} </i></small>
         </div>
         <span style="display: flex; gap: .25rem">
-          <a class="ATB_btn"  href="{% url 'add_to_basket' product.id %}">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </a>
             {% if edit_perm == True %}
             <a href="{% url 'edit_product' product.id %}" id="edit_btn" style="display: none;" class="action_link admin absolute top right hidden">
               <i class="fa-solid fa-gear"></i>
-            </a>
+              </a>
+              <form method="POST" onsubmit="prevent_default()" style="display: flex; gap: .4rem;">
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{product.id}}"/>
+                <input type="number" name="quantity" style="width: 50px" value="1"/>
+                <button onclick="submit_form()" class="btn_main">
+                  <i  class="fa-solid fa-cart-shopping"></i>
+
+                </button>
+            </input>
+            </form>
           </span>
             {% endif %}
         </form>
@@ -44,7 +51,15 @@
 
   }
 )
-  
+function submit_form(element) {
+    const form = element.closest('form');
+    form.submit();
+  }
+
+  function prevent_default(e) {
+    e.prevent_default()
+  }
+
   </script>
 </script>
 {% endblock scripts %}
