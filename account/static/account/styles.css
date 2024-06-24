@@ -40,6 +40,9 @@
 .profile_avatar_ctn {
     border: 5px solid white;
     box-shadow: var(--box-shadow);
+    background-image: var(--avatar-url);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .avatar_placeholder {
