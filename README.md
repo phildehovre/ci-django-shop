@@ -42,8 +42,13 @@ I drew inspiration for the design from a widely recognized and highly popular on
 
 ## Features
 
-- User registration and authentication
-- Product browsing and searching
+### User registration and authentication
+
+ (INSERT SCREENSHOTS)
+
+### Product browsing and searching
+![amIresponsive](https://github.com/phildehovre/ci-django-shop/assets/66724307/ffa4d933-f67d-4cba-bf45-c21eafd65721)
+  
 - Shopping cart functionality
 - Order and checkout process
 - Potential payment integration
