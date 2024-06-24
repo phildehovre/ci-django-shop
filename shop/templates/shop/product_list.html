@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %} {% block products %}
 {% include 'base/toast.html' %}
 <div class="products_layout">
-  <a href="{% url 'add_product' %}" class="action_link admin"><i class="fa-solid fa-lock "></i>Add product</a>
+  <a href="{% url 'add_product' %}" class="action_link admin" style="margin: .5rem auto"><i class="fa-solid fa-lock "></i>Add product</a>
   <div class="list_ctn">
     {% for product in products %}
     <article class="card product">

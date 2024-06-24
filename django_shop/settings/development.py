@@ -24,7 +24,7 @@ else :
 
     STORAGES = {
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
+            "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
         },
 
         "staticfiles": {

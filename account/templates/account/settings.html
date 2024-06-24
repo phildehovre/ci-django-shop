@@ -9,12 +9,10 @@
   {% endif %} {% if page == 'view' %}
   <h1 class="page_section_heading">Profile</h1>
   <div class="profile_header">
-    <div class="profile_avatar_ctn" style="--avatar-url: url('{{user.profile.avatar.url}}');     background-image: var(--avatar-url);
-    background-repeat: no-repeat;
-    background-size: cover;">
+    <div class="profile_avatar_ctn" style="--avatar-url: url('{{user.profile.avatar.url}}')">
 
   {%  if profile.avatar %}
-      <img class="profile_avatar" src="{{ profile.avatar.url }}" />
+    {% include 'base/avatar.html' %}
       {% else %}
       <div class="profile_avatar avatar_placeholder">
         {{avatar_placeholder}}
