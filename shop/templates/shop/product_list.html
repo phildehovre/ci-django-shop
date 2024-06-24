@@ -6,7 +6,6 @@
     {% for product in products %}
     <article class="card product">
       <img src="{{ product.image.url }}" alt="{{ product.name }}" />
-      {{product.image.url}}
       <div class="w-full flex justify-between items-center" >
         <div class="w-full  flex-col">
           <a href="{% url 'product_detail' product.id %}">
