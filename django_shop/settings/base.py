@@ -11,7 +11,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 
-CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app', "https://ui.dev"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
