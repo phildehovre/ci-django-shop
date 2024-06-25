@@ -7,7 +7,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AWS_LOCATION="django_shop"
 
 if config("DJANGO_ENVIRONMENT")  == "production":
-    STATIC_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
+    STATIC_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 
     STORAGES = {
         "default": {
