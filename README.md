@@ -34,11 +34,17 @@ This is an online shop built with Django, allowing users to browse products, add
 
 I drew inspiration for the design from a widely recognized and highly popular online shopping platform. The objective of my implementation is to provide a comprehensive overview of the various facets involved in running an online shop. This high-level perspective aims to cover the essential components and functionalities without delving into the minutiae of each detail. Implementing every single aspect with full fidelity would be a significantly more time-consuming endeavor than the duration of this bootcamp permits.
 
-- Database implementation:
-
+#### Database implementation:
 
 ![Database diagram](https://github.com/phildehovre/ci-django-shop/assets/66724307/138cda10-9ae2-46a3-b874-4618990c60c3)
 
+#### Project management:
+
+By leveraging GitHub's robust tools for tracking progress and collaboration, our development team engaged in continuous interaction with users, gathering essential feedback at every stage. This feedback was instrumental in crafting detailed user stories, which were then meticulously divided into manageable tasks and organized into sprints. 
+
+[Agile project view](https://github.com/users/phildehovre/projects/3/views/1)
+
+![agile-screenshot](https://github.com/phildehovre/ci-django-shop/assets/66724307/85845972-3fea-4455-b690-af7ff621019a)
 
 ## Features
 
