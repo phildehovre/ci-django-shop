@@ -18,7 +18,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: .5rem;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .product_detail_ctn {
@@ -181,7 +181,11 @@
 }
 
 @media screen and (max-width: 500px) {
-    
+    .list_ctn {
+        margin: 0 auto;
+        justify-content: center;
+        width: 100%;
+    }
 .shop_ctn {
     display: flex;
     flex-direction: column;
