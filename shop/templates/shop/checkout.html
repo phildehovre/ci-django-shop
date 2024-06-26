@@ -1,78 +1,98 @@
 {% extends 'shop/base.html' %} {% block products %}
 
 {% if page == 'checkout' %}
-<h1>Checkout</h1>
-<a href="{% url 'basket' %}">Return to basket</a>
-<form method="POST">
-  {% csrf_token %}
-  <ul class="checkout_list">
-    {% for order in basket %}
-    <li class="checkout_item">
-      <p class="name">{{ order.product.name }}</p>
-      <p class="price">{{ order.product.price }} x {{ order.quantity }}</p>
-      <p><strong>{{ order.total }}</strong></p>
-    </li>
-    {% endfor %}
-  </ul>
-  
-  <div class="list_ctn">
-    {% for address in addresses %}
-    <div class="card_ctn">
-    <article class="card address_ctn" data-address-id="{{ address.id }}">
-      <div>
-        <h2>{{ address.name }}</h2>
-        {% if address.default %}
-          <small>(Default address)</small>
-        {% else %}
-          <a href="{% url 'set_default' address.id %}">Set as default</a>
-          {% endif %}
-          <small></small>
-        </div>
-        <p>{{ address.address }}<br/>
-          {{ address.postcode }} {{ address.city }}<br/>
-          {{ address.country }}</p>
-          <small>Additional info: {{ address.additional }}</small>
-          <br />
-          <small>
-            <a href="{% url 'settings' %}?q=address&id={{ address.id }}">Edit</a>
-            <a href="{% url 'delete_address' address.id %}">Delete</a>
-          </small>
-        </article>
-      </div>
+  <h1>Checkout</h1>
+  <a href="{% url 'basket' %}">Return to basket</a>
+  <form method="POST">
+    {% csrf_token %}
+    <ul class="checkout_list">
+      {% for order in basket %}
+      <li class="checkout_item">
+        <p class="name">{{ order.product.name }}</p>
+        <p class="price">{{ order.product.price }} x {{ order.quantity }}</p>
+        <p><strong>{{ order.total }}</strong></p>
+      </li>
       {% endfor %}
-    </div>
+    </ul>
+    
+    <div class="flex flex-col gap-1">
+      {% for address in addresses %}
+
+        <article class="card address_ctn" data-address-id="{{ address.id }}">
+          <div>
+            <h2>{{ address.name }}</h2>
+            {% if address.default %}
+            <small style="background-color: lightgreen; border-radius: 2px">(Default address)</small>
+            {% else %}
+            <a href="{% url 'set_default' address.id %}">Set as default</a>
+            {% endif %}
+            <small></small>
+          </div>
+          <p>{{ address.address }}<br/>
+            {{ address.postcode }} {{ address.city }}<br/>
+            {{ address.country }}</p>
+            <small>Additional info: {{ address.additional }}</small>
+            <br />
+            <small>
+              <a href="{% url 'settings' %}?q=address&id={{ address.id }}">Edit</a>
+              <a href="{% url 'delete_address' address.id %}">Delete</a>
+            </small>
+          </article>
+ 
+        {% endfor %}
+      </div>
       <h2>{{ total }}</h2>
       {% if  addresses|length == 0 %}
-        <a href="{% url 'settings' %}">Provide a shipping address</a>
-        {% else %}
-        <input type="submit" value="Purchase" />
-        {% endif %}
+      <a href="{% url 'settings' %}">Provide a shipping address</a>
+      {% endif %}
       {% if messages %}
       <ul>
-          {% for message in messages %}
-          <li class="{{ message.tags }}">
-              {{ message }}
-          </li>
-              {% endfor %}
-          </ul>
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
       {% endif %}
-</form>
-{% endif %}
-
-{% if page == 'confirmation' %}
-<div class="card_ctn success">
-  <h1>Your order was successfully placed:</h1>
-  {{ order }}
-  {% for item in order.items %}
-    <small>{{ item.product.name }} | {{ item.quantity }}</small>
-  {% endfor %}
-
-</div>
-{% endif %}
-
-{% block scripts %}
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+    </form>
+    {% include 'shop/checkout_modal.html' %}
+    
+    {% if  addresses|length != 0 %}
+    <button class="btn_main" onclick="handleTriggerClick()">Purchase with card</button>
+    {% endif %}
+    {% endif %}
+    
+    
+    {% if page == 'confirmation' %}
+    <div class="card_ctn success">
+      <h1>Your order was successfully placed:</h1>
+      <h2>Delivery at: </h2>
+        <article class="card " data-address-id="{{ address.id }}">
+          <div>
+            <h2>{{ shipping.name }}</h2>
+          </div>
+          <p>{{ shipping.address }}<br/>
+            {{ shipping.postcode }} {{ shipping.city }}<br/>
+            {{ shipping.country }}</p>
+            <small>Additional info: {{ shipping.additional }}</small>
+            <br />
+          </article>
+      <ul class="checkout_list" style="margin-top: 1.5rem">
+        {% for item in basket %}
+              <li class="checkout_item">
+        <p class="name">{{ item.product.name }}</p>
+        <p class="price">{{ item.product.price }} x {{ item.quantity }}</p>
+        <p><strong>{{ order.total }}</strong></p>
+      </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    
+    
+    {% block scripts %}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
     let previousIndex = null;
     const addresses = document.querySelectorAll('.address_ctn');
     addresses.forEach((address, i) => {
@@ -93,8 +113,18 @@
       });
     });
   });
-</script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const trigger = document.querySelector('.modal_trigger')
   
+  trigger.addEventListener('click', () => {console.log('Pow!')})
+})
+
+function handleTriggerClick() {
+  const modal = document.querySelector('.modal_ctn')
+  modal.classList.toggle('visible')
+  
+}
 </script>
 {% endblock scripts %}
 {% endblock products %}

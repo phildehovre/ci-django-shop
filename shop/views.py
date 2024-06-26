@@ -13,6 +13,8 @@ def shop_view(request, selected_tags=None):
     page = "product_list"
     product_list = Product.objects.all()
     product_tags = ProductTag.objects.all()
+    toast_action_label = "View basket"
+    toast_action_url = "/shop/basket"
 
     # Handle adding product to basket:
     if request.method == "POST":
@@ -45,7 +47,9 @@ def shop_view(request, selected_tags=None):
             "selected_tags": selected_tags,
             'page': page,
             "edit_perm": edit_perm,
-            "add_perm": add_perm
+            "add_perm": add_perm,
+            "toast_action_url": toast_action_url,
+            "toast_action_label": toast_action_label,
         }
     )
 
@@ -54,7 +58,7 @@ def shop_view(request, selected_tags=None):
 def add_to_basket(request, pk):
     quantity = int(request.POST.get("quantity", 1))
     product = Product.objects.get(id=pk)
-
+    
     try:
         order = Order.objects.get(user=request.user, status=0)
     except Order.DoesNotExist:
@@ -165,6 +169,7 @@ def basket_view(request):
             update_basket(request)
 
     basket = OrderItem.objects.filter(Q(order__user=request.user), Q(order__status=0))
+    print(len(basket))
     return render(
          request, 
          'shop/basket.html', 
@@ -181,14 +186,18 @@ def checkout_view(request):
     order = Order.objects.get(user=request.user, status=0)
     basket = OrderItem.objects.filter(order__user=request.user, order=order)
     addresses = Address.objects.filter(user=request.user).order_by('-default')
+    address = None
+    toast_action_url = ""
+    toast_action_label = ""
 
     if len(addresses) == 0:
+        toast_action_url = "/account/settings"
+        toast_action_label = "Go to settings"
         messages.error(request, f"There are no shipping addresses, please enter your address in you account settings")
 
-    if order.DoesNotExist:
-         redirect('shop')
-
     if request.method == "POST":
+        if order.DoesNotExist:
+            redirect('shop')
         try:
             if address_id:
                 address = Address.objects.get(id=address_id)
@@ -196,7 +205,8 @@ def checkout_view(request):
                 address = Address.objects.filter(user=request.user, default=True).first()
 
             # Update order status
-            order.status = 2
+            # CHANGE THIS TO 0 FOR DEBUG
+            order.status = 0
             order.shipping = address
             order.save()
             
@@ -218,7 +228,10 @@ def checkout_view(request):
         'total': calculations.calculate_total(basket),
         'page': page,
         'addresses': addresses,
-        'order': basket
+        'order': basket,
+        'shipping': address,
+        'toast_action_url': toast_action_url,
+        "toast_action_label": toast_action_label
     })
 
 def save_specs_and_images(product, request):
@@ -241,6 +254,7 @@ def add_product(request):
     if request.method == 'POST':
         product_form = UpdateProductForm(request.POST, request.FILES)
         specs_form = ProductSpecsForm(request.POST)
+        image_form = ProductImageForm(request.POST, request.FILES)
         if product_form.is_valid():
             product = product_form.save()
             save_specs_and_images(product, request)
@@ -258,16 +272,42 @@ def add_product(request):
     })
 
 @login_required
+def delete_product(request, pk):
+    product=get_object_or_404(Product, id=pk)
+    try:
+        product.delete()
+        messages.success(request, f"{product.name} was deleted successfully")
+        toast_action_url = None
+        toast_action_label = None
+        return redirect('shop')
+    except Exception as e:
+        messages.error(request, f"An error occurred, product {product.name} was not deleted")
+
+
+    context = {
+            'toast_action_url': toast_action_url,
+            'toast_action_label': toast_action_url,
+    }
+
+    return render(request, 'base/form.html', context)
+
+
+        
+
+@login_required
 def edit_product(request, pk):
     page = 'edit'
     product = get_object_or_404(Product, id=pk)
+    if request.method == "DELETE":
+        print(f"Delete {product}")
+
     if request.method == "POST":
         form = UpdateProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             product = form.save()
             save_specs_and_images(product, request)
             messages.success(request, f'{product.name} was updated successfully.')
-            return redirect('shop')
+            return redirect(f'/shop/product/{product.id}')
         else:
             messages.error(request, "There was an error with your form submission.")
     else:
@@ -284,6 +324,7 @@ def edit_product(request, pk):
         'heading': 'Edit Product'
     }
     return render(request, 'base/form.html', context)
+
 @login_required
 def edit_feature(request, pk):
         feature = Feature.objects.get(id=pk)

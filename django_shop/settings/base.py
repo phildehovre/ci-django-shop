@@ -4,16 +4,14 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-
-print("PATH", BASE_DIR)
+LOGIN_URL="/login"
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[])
 
-CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://django-shop.up.railway.app', "https://ui.dev"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +36,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS="ALLOW FROM https://ui.dev"
 
 ROOT_URLCONF = 'django_shop.urls'
 
@@ -91,6 +91,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'staticfiles', 'base'), 
     os.path.join(BASE_DIR,'staticfiles', 'shop'), 
@@ -103,9 +105,9 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/django_shop'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
 
-AWS_S3_URL_PROTOCOL = 'https:'
+AWS_S3_URL_PROTOCOL = "https:"
 AWS_S3_USE_SSL = True
 AWS_S3_VERIFY = True
 

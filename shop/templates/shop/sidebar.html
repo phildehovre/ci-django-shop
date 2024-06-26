@@ -19,8 +19,11 @@
         %}
         name="tag"
         value="{{ tag.id }}"
+        id="{{tag.name}}"
       />
-      {{ tag.name }}
+      <label for="{{tag.name}}">
+        {{ tag.name }}
+      </label>
     </li>
     {% endfor %}
   </form>
@@ -42,9 +45,7 @@
 
 {% endif %} 
 
-{% if page == 'checkout' %}
-<h1>checkout sidebar</h1>
-{% endif %} {% block scripts %}
+ {% block scripts %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll(".filter-checkbox");

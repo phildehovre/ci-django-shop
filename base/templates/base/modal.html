@@ -1,0 +1,28 @@
+
+{% load static %}
+
+{% block content %}
+<div class="modal_ctn">
+    <div class="modal_content">
+
+        <button class="btn_main" onclick="handleModalClose()">
+            <i class="fa-solid fa-close"></i>
+        </button>
+        {% block modal %}
+
+
+        {% endblock modal %}
+    </div>
+
+</div>
+<script>
+        function handleModalClose() {
+
+        const modal = document.querySelector('.modal_ctn')
+        modal.classList.remove('visible')
+        }
+
+
+
+</script>
+{% endblock content %}

@@ -12,6 +12,7 @@
     --box-padding: 1rem 2.5rem;
     --action_link-padding: .5rem 1rem;
     --action_link-radius: 6px;
+    --DEBUG: outline 1px solid red;
     }
 
 
@@ -45,15 +46,15 @@
 
 .navbar {
     display: flex;
-    justify-content: flex-end;
     width: 100%;
-    }
-    
+}
+
 .navbar-nav {
     display: flex;
     width: 100%;
     gap: 1rem;
     align-items: center;
+    justify-content: flex-end;
 }
 
 
@@ -73,7 +74,12 @@
     width: 5em;
     border-radius: 100%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 .profile_avatar {
     height: 100%;
@@ -84,10 +90,14 @@
 .btn_main {
     border-radius: 6px;
     background-color: var(--clr-cta-secondary);
-    border: 1px solid var(--clr-cta-primary);
+    border: 1px solid var(--clr-cta-border-light);
     padding: 1em;
     transition: all 250ms ease-in-out;
-
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
     a {
         text-decoration: none;
         color: var(--clr-cta-primary);
@@ -99,11 +109,18 @@
 
 .btn_main:hover:not(.disabled) {
     background-color: white;
+    text-decoration: none;
+    color: black;
 }
 
 .btn_main.disabled {
     color: grey;
     background-color: white;
+}
+
+.btn_main.danger {
+    border: 1px solid darkred;
+    color: rgb(163, 0, 0);
 }
 
 .btn_secondary {
@@ -247,6 +264,12 @@
 } 
 
 
+.form_ctn {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .form_ctn > form > h1 {
     text-align: center;
 }
@@ -315,7 +338,38 @@
 }
 
 
+.modal_ctn {
+    display: none;
+}
 
+.modal_ctn.visible {
+    display: block;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.151);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.modal_content {
+    position: absolute;
+    border: none;
+    border-radius: 16px;
+    max-width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2.5rem;
+}
+
+.modal_content > form {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
 
 /**
 ============================================== 
@@ -385,7 +439,7 @@ Utility classes - heavily inspired by tailwind
 }
 
 .destructive {
-    color: crimson
+    color: red
 }
 
 .gap-1 {
@@ -394,7 +448,11 @@ Utility classes - heavily inspired by tailwind
 
 @media screen and (min-width: 1024px) {
     .responsive_ctn {
+<<<<<<< HEAD
         max-width: 1360px;
+=======
+        max-width: 1500px;
+>>>>>>> 8ff06f45987366c02c26c494de3e91bb91babde3
     }
 
 }

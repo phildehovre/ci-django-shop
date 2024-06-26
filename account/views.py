@@ -76,7 +76,6 @@ def settings_view(request):
     profile = Profile.objects.filter(user=request.user).first()
     profile_form = UpdateProfileForm(request.POST, instance=request.user.profile)
 
-
     if request.method == "POST" and page == 'edit':
         try:
             profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
@@ -106,8 +105,13 @@ def settings_view(request):
         if request.method == 'POST':
             address_form = UpdateAddressForm(request.POST, instance=address)
             try:
+                is_default = False
+                if len(addresses) == 0:
+                    is_default = True
                 if address_form.is_valid():
                     address = address_form.save(commit=False)
+                    print(f"There are {len(addresses)} addresses for this user.")
+                    address.default = is_default
                     address.user = request.user 
                     address.save()
                     return redirect('settings')
@@ -116,7 +120,6 @@ def settings_view(request):
         else:
             # Initialize the form with the address instance
             address_form = UpdateAddressForm(instance=address)
-
        
 
     return render(request, 
@@ -126,7 +129,8 @@ def settings_view(request):
                     'profile_form': profile_form, 
                     'page': page,
                     'addresses': addresses,
-                    'address_form': address_form
+                    'address_form': address_form,
+                    'avatar_placeholder': request.user.username[:1].upper()
                 })
 
 def delete_address(request, pk):

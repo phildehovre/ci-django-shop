@@ -31,7 +31,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     description = models.TextField()
-    image = models.ImageField(default='https://www.eag-led.com/wp-content/uploads/2017/04/Product-Image-Coming-Soon.png', upload_to='django_shop/products')
+    image = models.ImageField(default='https://www.eag-led.com/wp-content/uploads/2017/04/Product-Image-Coming-Soon.png', upload_to='products')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(ProductTag)
@@ -49,7 +49,7 @@ class ProductSpecs(models.Model):
     
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='django_shop/products')
+    image = models.ImageField(upload_to='products')
     alt=models.CharField(max_length=150)
 
     
@@ -77,21 +77,6 @@ class OrderItem(models.Model):
     @property
     def total_item_price(self):
         return self.quantity * self.product.price
-    
-class ShippingInfo(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE)
-    address = models.CharField(max_length=200)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=20)
-    country = models.CharField(max_length=100)
-    shipping_method = models.CharField(max_length=100)
-    shipping_status = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"Shipping Info for Order #{self.order.id}"
-        
-
     
 class Feature(models.Model):
     image=models.ImageField(upload_to="feature_pictures")

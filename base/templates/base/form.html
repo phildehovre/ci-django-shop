@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block content %}
-<div class="form_ctn">
+<div class="form_ctn flex flex-col gap-1">
     {% if heading %}
     <h1>{{ heading }}</h1>
     {% endif %}
-{% if form %}
+    {% if form %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
@@ -18,13 +18,17 @@
                 <input type="text" name="value" placeholder="Value">
             </div>
         </div>
-        <button type="button" onclick="addKeyValuePair()">Add another spec</button>
+        <button aria-label="Add new specification" type="button" onclick="addKeyValuePair()">Add another spec</button>
         <h2>Images</h2>
         {% if page == "add" or page == "edit" %}
         <input type="file" name="images" multiple>
         {% endif %}
-        <button type="submit" class="btn_main">Submit</button>
+        <button aria-label="submit form" type="submit" class="btn_main">Submit</button>
     </form>
+    {% if page == "edit" %}
+    {% include 'shop/delete_product_modal.html' %}
+        <a class="btn_main danger modal_trigger destructive" onclick="handleTriggerClick()">Delete this product</a>
+        {% endif %}
     {% endif %}
     
 
@@ -49,5 +53,18 @@
 
         container.appendChild(div);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+  const trigger = document.querySelector('.modal_trigger')
+  
+  trigger.addEventListener('click', () => {console.log('Pow!')})
+})
+
+function handleTriggerClick() {
+  const modal = document.querySelector('.modal_ctn')
+  modal.classList.toggle('visible')
+  
+}
 </script>
 {% endblock content %}

@@ -2,7 +2,9 @@
 <div class="page_ctn">
 
   <h1>{{ profile.user.username }}</h1>
-  <img src="{{ profile.avatar.url }}" />
+  {%  if profile.avatar.url %}
+    <img src="{{ profile.avatar.url }}" />
+  {% endif %}
   <p>{{ profile.bio }}</p>
   <h2>Name:</h2>
   <p>{{ user.username }}</p>
@@ -12,16 +14,16 @@
   </form>
   {% endif %} {% if page == 'profile' %}
   <h1>Your profile</h1>
-  <button>
     <a href="{% url 'account' %}">Edit profile</a>
-  </button>
   <div class="profile_row">
     <h2>Name:</h2>
     <p>{{ profile.user.username }}</p>
   </div>
   <h2>About you:</h2>
   <div class="profile_avatar_ctn">
+  {%  if profile.avatar.url %}
     <img class="profile_avatar" src="{{ profile.avatar.url }}" />
+    {% endif %}
   </div>
   <p>{{ profile.bio }}</p>
   {% endif %} 

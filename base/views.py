@@ -47,10 +47,12 @@ def login_view(request):
                 # if profile is None:
                 #     profile = Profile.objects.create(user=request.user)
                 #     profile.save()
+                if user.is_superuser:
+                    messages.success(request, 'You are logged in as administrator')
+
                 return redirect('shop')
         except:
             messages.error(request, 'Username or password incorrect')   
-            return redirect('home')
 
     return render(request, 'base/login_register.html', {'page': page})
 
@@ -67,6 +69,7 @@ def user_register(request):
             form = UserCreationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
+                
                 # The commit=False argument passed to the save() method 
                 # indicates that the changes made to the user instance 
                 # should not be immediately saved to the database. 

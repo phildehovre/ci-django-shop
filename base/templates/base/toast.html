@@ -12,6 +12,11 @@
   </div>
   <div class="toast-body">
     {{message}}
+    {% if toast_action_url %}
+        <div class="mt-2 pt-2 border-top">
+          <a class="btn btn-primary btn-sm" data-bs-dismiss="toast" href='{{ toast_action_url }}'>{{toast_action_label}}</a>
+          </div>
+    {% endif %}
     </div>
     </div>
   {% endfor %}

@@ -1,0 +1,12 @@
+{% extends 'base/modal.html' %}
+
+{% load static %}
+
+{% block modal %}
+    {% csrf_token %}
+    <h2>
+        Are you sure you wish to delete this product? {{product}}
+</h2>
+<a class="btn_main destructive" style="margin-top: .5rem" href="{% url 'delete_product' product.id %}">Delete</a>
+
+{% endblock modal %}

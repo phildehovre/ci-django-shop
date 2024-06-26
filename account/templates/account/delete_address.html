@@ -7,11 +7,7 @@
     <small>
         {{ address.name }} - {{ address.address }}
     </small>
-    <button>
-        <input type="submit" value="Delete"/>
-    </button>
-    <button>
-        <a href="{% url 'settings' %}">Cancel</a>
-    </button>
+        <input class="btn_main confirm" type="submit" value="Delete"/>
+        <a class="btn_main danger" href="{% url 'settings' %}">Cancel</a>
 </form>
 {% endblock content %}
