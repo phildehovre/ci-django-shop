@@ -6,20 +6,26 @@
     --clr-cta-primary: rgb(49, 49, 49) ;
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
+    --clr-border-light: rgba(146, 146, 146, 0.411);
 
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
     --action_link-padding: .5rem 1rem;
     --action_link-radius: 6px;
     }
-    
-    .somecrap {
-        color: pink
-    }
+
 
     body {
         color: rgb(66, 66, 66)
     }
+
+    .responsive_ctn {
+        margin: 0 auto;
+        width: 100%;
+        padding: 16px;
+    }
+
+
 .hamburger_trigger {
     border: 1px solid rgb(155, 163, 197);
     height: 40px;
@@ -275,7 +281,7 @@
     padding: .5em;
     background-color: transparent;
     border-radius: var(--action_link-radius);
-    border: 1px solid var(--clr-cta-primary);
+    border: 1px solid var(--clr-border-light);
 }
 
 .form_ctn {
@@ -309,13 +315,7 @@
 }
 
 
-@media screen and (min-width: 600px) {
-    .footer_links {
-        margin: 0 auto;
-        display: flex;
-    }
 
-}
 
 /**
 ============================================== 
@@ -324,9 +324,19 @@ Utility classes - heavily inspired by tailwind
 
  */
 
-
 .flex {
     display: flex;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.top {
+    top: 16px;
+}
+.right {
+    right: 16px;
 }
 
 .w-full {
@@ -350,6 +360,9 @@ Utility classes - heavily inspired by tailwind
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
 
 .wrap {
     flex-wrap: wrap;
@@ -377,4 +390,18 @@ Utility classes - heavily inspired by tailwind
 
 .gap-1 {
     gap: 2.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .responsive_ctn {
+        max-width: 1360px;
+    }
+
+}
+@media screen and (min-width: 600px) {
+    .footer_links {
+        margin: 0 auto;
+        display: flex;
+    }
+
 }

@@ -6,6 +6,7 @@
     --clr-cta-primary: rgb(49, 49, 49) ;
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
+    --clr-border-light: rgba(146, 146, 146, 0.411);
 
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
@@ -280,7 +281,7 @@
     padding: .5em;
     background-color: transparent;
     border-radius: var(--action_link-radius);
-    border: 1px solid var(--clr-cta-primary);
+    border: 1px solid var(--clr-border-light);
 }
 
 .form_ctn {
@@ -323,9 +324,19 @@ Utility classes - heavily inspired by tailwind
 
  */
 
-
 .flex {
     display: flex;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.top {
+    top: 16px;
+}
+.right {
+    right: 16px;
 }
 
 .w-full {
@@ -349,6 +360,9 @@ Utility classes - heavily inspired by tailwind
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
 
 .wrap {
     flex-wrap: wrap;
@@ -380,7 +394,7 @@ Utility classes - heavily inspired by tailwind
 
 @media screen and (min-width: 1024px) {
     .responsive_ctn {
-        max-width: 1024px;
+        max-width: 1360px;
     }
 
 }
