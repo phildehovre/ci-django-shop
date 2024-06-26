@@ -31,6 +31,8 @@
 {% endif %} 
 
 {% if page == 'basket' %}
+<ul class="sidebar_ctn">
+
   <h1>Order details:</h1>
   <p>Total: £{{ total|floatformat:2 }}</p>
   {% if basket|length > 0 %}
@@ -42,11 +44,28 @@
     Checkout
   </button>
   {% endif %}
-
-{% endif %} 
-
- {% block scripts %}
-<script>
+</ul>
+  {% endif %} 
+ 
+ {% if page == 'checkout' %}
+<ul class="sidebar_ctn">
+  {% include 'shop/checkout_modal.html' %}
+  <h1>Order summary:</h1>
+  <p>Total: £{{ total|floatformat:2 }}</p>
+  {% if basket|length > 0 %}
+  {% if  addresses|length != 0 %}
+  <button class="btn_main" onclick="handleTriggerClick()">Purchase with card</button>
+  {% endif %}
+  {% else %}
+  <button class="btn_main disabled" disabled>
+    Checkout
+  </button>
+  {% endif %}
+</ul>
+  {% endif %} 
+  
+  {% block scripts %}
+  <script>
   document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll(".filter-checkbox");
     const form = document.querySelectorAll(".filter-form");
@@ -103,5 +122,11 @@
       });
     });
   });
+
+  function handleTriggerClick() {
+  const modal = document.querySelector('.modal_ctn')
+  modal.classList.toggle('visible')
+  
+}
 </script>
 {% endblock scripts %} {% endblock content %}

@@ -1,11 +1,14 @@
 :root {
     --clr-bg-primary: white;
     --clr-bg-secondary: white;
+    --clr-white: white;
     --clr-txt-primary: black;
     --clr-txt-secondary: rgb(146, 146, 146);
     --clr-cta-primary: rgb(49, 49, 49) ;
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
+    --clr-btn-primary: rgb(94, 10, 173);
+    --clr-btn-secondary: rgb(94, 10, 173);
 
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
@@ -90,18 +93,18 @@
 
 .btn_main {
     border-radius: 6px;
-    background-color: var(--clr-cta-secondary);
-    border: 1px solid var(--clr-cta-border-light);
+    border: 1px solid var(--clr-btn-secondary);
+    background-color: transparent;
     padding: 1em;
     transition: all 250ms ease-in-out;
     text-decoration: none;
-    color: black;
     text-align: center;
+    color: var(--clr-btn-primary);
     font-weight: 600;
     font-size: 1rem;
     a {
         text-decoration: none;
-        color: var(--clr-cta-primary);
+        color: inherit;
         text-transform: capitalize;
         font-weight: bold;
     }
@@ -109,9 +112,10 @@
 }
 
 .btn_main:hover:not(.disabled) {
-    background-color: white;
     text-decoration: none;
-    color: black;
+    background-color: var(--clr-btn-primary);
+    color: var(--clr-btn-primary);
+    color: white;
 }
 
 .btn_main.disabled {
@@ -351,6 +355,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 99;
 }
 
 

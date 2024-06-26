@@ -9,10 +9,11 @@
       {% for order in basket %}
       <li class="checkout_item">
         <p class="name">{{ order.product.name }}</p>
-        <p class="price">{{ order.product.price }} x {{ order.quantity }}</p>
-        <p><strong>{{ order.total }}</strong></p>
+        <p class="price">£{{ order.product.price }} x {{ order.quantity }}</p>
+        <p><strong>£{{ order.total|floatformat:2 }}</strong></p>
       </li>
       {% endfor %}
+      <h2>Total: £{{ total|floatformat:2 }}</h2>
     </ul>
     
     <div class="flex flex-col gap-1">
@@ -41,7 +42,6 @@
  
         {% endfor %}
       </div>
-      <h2>{{ total }}</h2>
       {% if  addresses|length == 0 %}
       <a href="{% url 'settings' %}">Provide a shipping address</a>
       {% endif %}
