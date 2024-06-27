@@ -55,9 +55,15 @@ By leveraging GitHub's robust tools for tracking progress and collaboration, our
 ### Product browsing and searching
 ![amIresponsive](https://github.com/phildehovre/ci-django-shop/assets/66724307/ffa4d933-f67d-4cba-bf45-c21eafd65721)
   
-- Shopping cart functionality
-- Order and checkout process
-- Potential payment integration
+### Shopping cart functionality
+  ![basket](https://github.com/phildehovre/ci-django-shop/assets/66724307/43f2b3b2-012d-4af2-85dc-5de3d518e595)
+  
+### Order and checkout process
+![checkout](https://github.com/phildehovre/ci-django-shop/assets/66724307/9e39e09e-06ee-4eff-ac34-693f12cea876)
+
+### Mock payment integration
+![mock_payment](https://github.com/phildehovre/ci-django-shop/assets/66724307/b25b279c-4de0-447e-9d03-492b19510959)
+
 - Order history
 - Admin panel for managing products, orders, and users
 
