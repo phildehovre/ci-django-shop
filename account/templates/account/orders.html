@@ -6,18 +6,20 @@
 <h1>Orders</h1>
 {% block order_content %}
 {% for order in orders %} 
-<ul class="card w-full">
-    <li>
-        <a href="{% url 'order_detail' order.id %}">
-            {{ order }}
+<ul class="card w-full order_header" style="list-style: none;">
+    <li class="">
+        <a style="width: fit-content" href="{% url 'order_detail' order.id %}">
+            <h2>
+                {{ order }}
+            </h2>
         </a>
     {% for array in order_items %}
-<ul>
+<ul class="order_content" style="list-style: none;">
     {% for item in array %}
 {% if item.order.id == order.id %}
-<li>
+<li >
     <small>{{item.product.name}}</small>
-<small>{{item.order.id}}</small>
+<small>{{item.order.quantity}} | Total: {{ item.total }}</small>
 </li>
 {% endif %}
 {% endfor %}
@@ -28,5 +30,17 @@
 {% endfor %}
 {% endblock order_content %}
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const headers = document.querySelectorAll(".order_header")
+        headers.forEach((el, i) => {
+            el.addEventListener('click', () => {
+                const content = el.querySelectorAll('.order_content')[i]
+                content.classList.toggle('visible')
+            })
+
+        })
+    })
+</script>
 {% endblock content %}
 </ul>

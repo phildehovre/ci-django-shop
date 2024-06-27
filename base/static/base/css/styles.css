@@ -8,13 +8,8 @@
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
     --clr-btn-primary: rgb(94, 10, 173);
-<<<<<<< HEAD
-    --clr-btn-secondary: rgba(94, 10, 173, 0.329);
-    --clr-cta-border-light: rgba(128, 128, 128, 0.404);
-=======
     --clr-btn-secondary: rgb(94, 10, 173);
 
->>>>>>> dd689e2b98bf258ff46505232cfc811dd60aed6a
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
     --action_link-padding: .5rem 1rem;
@@ -108,13 +103,8 @@
 
 .btn_main {
     border-radius: 6px;
-<<<<<<< HEAD
-    background-color: var(--clr-btn-secondary);
-    border: 1px solid var(--clr-cta-border-light);
-=======
     border: 1px solid var(--clr-btn-secondary);
     background-color: transparent;
->>>>>>> dd689e2b98bf258ff46505232cfc811dd60aed6a
     padding: 1em;
     transition: all 250ms ease-in-out;
     text-decoration: none;
@@ -277,6 +267,21 @@
     font-size: 1.5rem;
 }
 
+.order_header {
+    border: 1px solid transparent;
+}
+
+.order_header:hover {
+    border: 1px solid lightgrey;
+}
+
+.order_content {
+    display: none;
+}
+
+.order_content.visible {
+    display: block;
+}
 /**
 ============================================== 
             Login & Register pages
