@@ -16,6 +16,11 @@
           {% endfor %}
         </div>
         <div class="carousel-inner">
+          {% if images|length == 0 %}
+          <div class="carousel-item">
+            <img src="{{product.image.url}}" alt="Image of {{product.name}}" />
+          </div>
+          {% endif %}
         {% for image in images %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}" >
             <img src="{{ image.image.url }}" class="d-block" alt="">

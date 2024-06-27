@@ -29,8 +29,7 @@ else :
 
     STORAGES = {
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-            "LOCATION": AWS_LOCATION
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
 
         "staticfiles": {
