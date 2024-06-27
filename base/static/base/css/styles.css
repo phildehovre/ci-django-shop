@@ -1,12 +1,15 @@
 :root {
     --clr-bg-primary: white;
     --clr-bg-secondary: white;
+    --clr-white: white;
     --clr-txt-primary: black;
     --clr-txt-secondary: rgb(146, 146, 146);
     --clr-cta-primary: rgb(49, 49, 49) ;
     --clr-cta-secondary: rgba(255, 255, 255, 0);
     --clr-cta-tertiary: rgb(94, 10, 173);
-
+    --clr-btn-primary: rgb(94, 10, 173);
+    --clr-btn-secondary: rgba(94, 10, 173, 0.329);
+    --clr-cta-border-light: rgba(128, 128, 128, 0.404);
     --box-shadow: 1px 5px 10px 2px rgba(128, 128, 128, 0.1);
     --box-padding: 1rem 2.5rem;
     --action_link-padding: .5rem 1rem;
@@ -17,6 +20,16 @@
 
     body {
         color: rgb(66, 66, 66)
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        transition: 150ms ease-in-out all;
+
+        :hover {
+            color: grey;
+        }
     }
 
     .responsive_ctn {
@@ -90,7 +103,7 @@
 
 .btn_main {
     border-radius: 6px;
-    background-color: var(--clr-cta-secondary);
+    background-color: var(--clr-btn-secondary);
     border: 1px solid var(--clr-cta-border-light);
     padding: 1em;
     transition: all 250ms ease-in-out;
